@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="Pagina1.js"></script>
+    <link rel="stylesheet" href="Pagina1.css">
+</head>
+<body>
+    <!--MENU-->
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#" class="logo">MISIÓN CIRCULAR</a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#acerca" class="nav-link">Acerca De</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#contacto" class="nav-link contact-btn">CONTACTO</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+    
+    <!--FORMULARIO-->
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Form Section -->
+        <section class="form-section">
+            <div class="form-header">
+                <h1>Tu aliado en</h1>
+                <h2>sostenibilidad y más</h2>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name" class="form-label">Name <span class="required">*</span></label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Juan Perez" required>
+                    <div class="error-message" id="nameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="form-label">Email address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="email@email.com" required>
+                    <div class="error-message" id="emailError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone" class="form-label">Phone number <span class="required">*</span></label>
+                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="000-000-0000" required>
+                    <div class="error-message" id="phoneError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="form-label">Message</label>
+                    <textarea id="message" name="message" class="form-textarea" placeholder="Cuéntanos sobre tu proyecto de sostenibilidad..."></textarea>
+                    <div class="error-message" id="messageError"></div>
+                </div>
+
+                <button type="submit" class="submit-btn" id="submitBtn">Enviar Mensaje</button>
+
+                <div class="success-message" id="successMessage">
+                    ¡Gracias! Tu mensaje ha sido enviado correctamente. Te contactaremos pronto.
+                </div>
+            </form>
+        </section>
+
+        <!-- Contact Info Section -->
+        <section class="contact-section">
+            <div class="contact-header">
+                <h3>Conéctate con nosotros</h3>
+            </div>
+
+            <div class="contact-item">
+                <h4>
+                    <span class="icon">✉️</span>
+                    Email
+                </h4>
+                <a href="mailto:misioncircular@gmail.com">misioncircular@gmail.com</a>
+            </div>
+
+            <div class="contact-item">
+                <h4>
+                    <span class="icon">📍</span>
+                    Location
+                </h4>
+                <p>Manizales, Caldas</p>
+            </div>
+
+            <div class="contact-item">
+                <h4>
+                    <span class="icon">🕒</span>
+                    Hours
+                </h4>
+                <div class="hours-table">
+                    <div class="hours-row">
+                        <span class="day">Monday</span>
+                        <span class="time">9:00am - 10:00pm</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="day">Tuesday</span>
+                        <span class="time">9:00am - 10:00pm</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="day">Wednesday</span>
+                        <span class="time">9:00am - 10:00pm</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="day">Thursday</span>
+                        <span class="time">9:00am - 10:00pm</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="day">Friday</span>
+                        <span class="time">9:00am - 10:00pm</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="day">Saturday</span>
+                        <span class="time">9:00am - 6:00pm</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="day">Sunday</span>
+                        <span class="time">9:00am - 12:00pm</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+    
