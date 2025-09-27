@@ -145,6 +145,12 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="name" class="form-label">Cédula <span class="required">*</span></label>
+                    <input type="number" id="cedula" name="cedula" class="form-input" placeholder="1000000408" required>
+                    <div class="error-message" id="cedulaError"></div>
+                </div>
+
+                <div class="form-group">
                     <label for="email" class="form-label">Email address <span class="required">*</span></label>
                     <input type="email" id="email" name="email" class="form-input" placeholder="email@email.com" required>
                     <div class="error-message" id="emailError"></div>
@@ -230,6 +236,14 @@
             </div>
         </section>
     </main>
+
+     <!-- ICONO FLOTANTE -->
+    <button class="floating-icon" onclick="redirectToExternalPage()">
+        <!-- Icono de enlace externo (SVG) -->
+        <svg viewBox="0 0 24 24">
+            <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+        </svg>
+    </button>
 
 </body>
     

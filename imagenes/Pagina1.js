@@ -1,6 +1,6 @@
 //MENU
         // Mobile menu toggle
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click',()=>{
             menuToggle.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
@@ -187,12 +187,14 @@
 
         // Form inputs
         const nameInput = document.getElementById('name');
+        const cedulaInput = document.getElementById('cedula');
         const emailInput = document.getElementById('email');
         const phoneInput = document.getElementById('phone');
         const messageInput = document.getElementById('message');
 
         // Error elements
         const nameError = document.getElementById('nameError');
+        const cedulaError = document.getElementById('cedulaError');
         const emailError = document.getElementById('emailError');
         const phoneError = document.getElementById('phoneError');
         const messageError = document.getElementById('messageError');
@@ -200,6 +202,10 @@
 
         // Validation functions
         function validateName(name) {
+            return name.trim().length >= 2;
+        }
+
+        function validatecedula(cedula) {
             return name.trim().length >= 2;
         }
 
@@ -220,6 +226,15 @@
             } else {
                 clearError(nameInput, nameError);
                 if (nameInput.value) nameInput.classList.add('success');
+            }
+        });
+
+        nameInput.addEventListener('blur', () => {
+            if (cedulaInput.value && !validatecedula(cedulaInput.value)) {
+                showError(cedulaInput, cedulaError, 'La cédula debe tener al menos 9 caracteres');
+            } else {
+                clearError(cedulaInput, cedulaError);
+                if (cedulaInput.value) cedulaInput.classList.add('success');
             }
         });
 
@@ -378,4 +393,28 @@
             }
             
             e.target.value = formattedValue;
+        });
+
+//boton flotante wsp
+
+ // Función para redirigir a página externa
+        function redirectToExternalPage() {
+            // Cambia esta URL por la que necesites
+            const externalURL = 'https://www.google.com';
+            
+            // Abre en nueva ventana/pestaña
+            window.open(externalURL, '_blank');
+            
+            // Si prefieres redirigir en la misma ventana, usa:
+            // window.location.href = externalURL;
+        }
+
+        // Opcional: Agregar animación de pulso después de 3 segundos
+        setTimeout(() => {
+            document.querySelector('.floating-icon').classList.add('pulse');
+        }, 3000);
+
+        // Opcional: Remover animación al hacer hover
+        document.querySelector('.floating-icon').addEventListener('mouseenter', function() {
+            this.classList.remove('pulse');
         });

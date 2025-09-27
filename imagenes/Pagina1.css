@@ -81,6 +81,11 @@
             height: 90px;
         }
 
+        .ig {
+            width: 30px;
+            height: 30px;
+        }
+
         .nav-menu {
             display: flex;
             list-style: none;
@@ -785,5 +790,62 @@
         }
 
         .service-card:hover .service-icon {
+            animation: pulse 2s infinite;
+        }
+
+ /* ESTILOS DEL ICONO FLOTANTE */
+        .floating-icon {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 9999; /* Valor alto para estar por encima de todo */
+            border: none;
+            outline: none;
+        }
+
+        .floating-icon:hover {
+            transform: scale(1.1);
+            background: #ff5252;
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .floating-icon:active {
+            transform: scale(0.95);
+        }
+
+        /* Icono SVG dentro del botón */
+        .floating-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        /* Animación de pulso opcional */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 6px 25px rgba(255, 107, 107, 0.4);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            }
+        }
+
+        .floating-icon.pulse {
             animation: pulse 2s infinite;
         }
