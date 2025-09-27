@@ -13,6 +13,170 @@
             });
         });
 
+//Servicios
+    // Intersection Observer para animaciones al scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observar todas las tarjetas de servicios
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            observer.observe(card);
+        });
+
+        // Efecto de hover mejorado
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                // Agregar clase activa para efectos especiales
+                this.classList.add('active');
+                
+                // Efecto de vibración sutil en el icono
+                const icon = this.querySelector('.service-icon');
+                icon.style.transform = 'scale(1.1)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                // Remover clase activa
+                this.classList.remove('active');
+                
+                // Restaurar icono
+                const icon = this.querySelector('.service-icon');
+                icon.style.transform = 'scale(1)';
+            });
+
+            // Efecto de clic
+            card.addEventListener('click', function(e) {
+                // Si no se hace clic en un enlace
+                if (!e.target.closest('.service-link')) {
+                    // Agregar efecto de clic
+                    this.style.transform = 'translateY(-8px) scale(0.98)';
+                    
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-8px) scale(1)';
+                    }, 150);
+                    
+                    // Log para fines de desarrollo
+                    const serviceType = this.dataset.service;
+                    console.log(`Servicio seleccionado: ${serviceType}`);
+                }
+            });
+        });
+
+        // Manejar clics en los enlaces de servicios
+        document.querySelectorAll('.service-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const card = this.closest('.service-card');
+                const serviceType = card.dataset.service;
+                
+                // Efecto visual de clic
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+                
+                // Aquí puedes agregar la lógica para navegar o mostrar más detalles
+                console.log(`Enlace clickeado: ${serviceType}`);
+                
+                // Ejemplo: mostrar modal o navegar a otra página
+                showServiceDetails(serviceType);
+            });
+        });
+
+        // Función para mostrar detalles del servicio (ejemplo)
+        function showServiceDetails(serviceType) {
+            const serviceDetails = {
+                'estudios': {
+                    title: 'Estudios Ambientales',
+                    description: 'Evaluaciones completas de impacto ambiental para proyectos de desarrollo sostenible.'
+                },
+                'gestion': {
+                    title: 'Gestión Ambiental Empresarial',
+                    description: 'Implementación de sistemas de gestión ambiental certificados ISO 14001.'
+                },
+                'geografica': {
+                    title: 'Servicios de Información Geográfica',
+                    description: 'Análisis espacial y cartografía digital para decisiones ambientales informadas.'
+                },
+                'tramites': {
+                    title: 'Trámites Ambientales',
+                    description: 'Gestión integral de permisos y licencias ambientales.'
+                },
+                'biodiversidad': {
+                    title: 'Biodiversidad',
+                    description: 'Estudios especializados en fauna, flora y conservación de ecosistemas.'
+                },
+                'sostenible': {
+                    title: 'Desarrollo Sostenible',
+                    description: 'Estrategias de sostenibilidad y economía circular para empresas.'
+                },
+                'agua': {
+                    title: 'Gestión del Agua',
+                    description: 'Estudios hidrológicos y gestión integral del recurso hídrico.'
+                }
+            };
+
+            const service = serviceDetails[serviceType];
+            if (service) {
+                alert(`${service.title}\n\n${service.description}\n\n¡Contáctanos para más información!`);
+            }
+        }
+
+        // Animación de contador para estadísticas (opcional)
+        function animateCounter(element, target, duration = 2000) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function updateCounter() {
+                start += increment;
+                if (start < target) {
+                    element.textContent = Math.floor(start);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            }
+            
+            updateCounter();
+        }
+
+        // Efecto parallax sutil en scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const cards = document.querySelectorAll('.service-card');
+            
+            cards.forEach((card, index) => {
+                const speed = 0.5 + (index * 0.1);
+                const yPos = -(scrolled * speed / 10);
+                card.style.transform = `translateY(${yPos}px)`;
+            });
+        });
+
+        // Preloader para las tarjetas
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.service-card');
+            
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
 //FORMULARIO
     // DOM Elements
         const menuToggle = document.getElementById('menuToggle');
