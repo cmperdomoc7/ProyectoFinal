@@ -1,4 +1,23 @@
- // Reveal animations on scroll
+//MENU
+        const menuToggle = document.getElementById('menuToggle');
+
+        // Mobile menu toggle
+        //menuToggle.addEventListener('click',()=>{
+        //    menuToggle.classList.toggle('active');
+        //    navMenu.classList.toggle('active');
+        //});
+
+        // Close menu when clicking on links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+
+
+// Reveal animations on scroll
         function revealOnScroll() {
             const reveals = document.querySelectorAll('.reveal');
             
@@ -60,16 +79,4 @@
                     });
                 }
             });
-        });
-
-        // Navbar background change on scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.9)';
-                navbar.style.boxShadow = 'none';
-            }
         });

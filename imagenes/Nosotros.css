@@ -1,167 +1,6 @@
-:root {
-            /* Paleta de colores naturales basada en tu imagen */
-            --primary-color: #2c4741; /* Verde oscuro principal */
-            --secondary-color: #3d5850; /* Verde medio oscuro */
-            --accent-color: #7ba05b; /* Verde medio */
-            --accent-light: #a4bc8d; /* Verde claro */
-            --accent-lighter: #c5d4b8; /* Verde muy claro */
-            
-            /* Colores de texto */
-            --text-dark: #1f2d2a;
-            --text-light: #5a6b63;
-            --text-muted: #8a9690;
-            
-            /* Backgrounds */
-            --background-light: #f8faf9;
-            --background-gray: #f2f5f3;
-            --background-accent: #eef3ed;
-            --white: #ffffff;
-            
-            /* Borders */
-            --border-light: #d9e2de;
-            --border-focus: #7ba05b;
-            
-            /* Estados */
-            --success-color: #6b9654;
-            --error-color: #c7644a;
-            
-            /* Sombras */
-            --shadow-sm: 0 1px 2px 0 rgba(44, 71, 65, 0.08);
-            --shadow-md: 0 4px 6px -1px rgba(44, 71, 65, 0.15);
-            --shadow-lg: 0 10px 15px -3px rgba(44, 71, 65, 0.15);
-            --shadow-xl: 0 20px 25px -5px rgba(44, 71, 65, 0.15);
-            
-            /* Gradientes naturales */
-            --gradient-primary: linear-gradient(135deg, #7ba05b 0%, #2c4741 100%);
-            --gradient-green: linear-gradient(135deg, #a4bc8d 0%, #7ba05b 100%);
-            --gradient-subtle: linear-gradient(135deg, #eef3ed 0%, #f8faf9 100%);
-        } 
+
         
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(44, 62, 80, 0.1);
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-        
-        /* Header moderno */
-        .header {
-            background: var(--white);
-            padding: 1rem 0;
-            box-shadow: var(--shadow-sm);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-light);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-            width: 230px;
-            height: 90px;
-        }
-
-        .ig {
-            width: 30px;
-            height: 30px;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: var(--text-light);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-link:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -5px;
-            left: 50%;
-            background: var(--accent-color);
-            transition: all 0.3s ease;
-            transform: translateX(-50%);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .nav-link.contact-btn {
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            border: 2px solid var(--primary-color);
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link.contact-btn::after {
-            display: none;
-        }
-
-        .nav-link.contact-btn:hover {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-            color: var(--white);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 2px;
-            background: var(--primary-color);
-            margin: 3px 0;
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-
-
+       
 * {
             margin: 0;
             padding: 0;
@@ -171,17 +10,47 @@
         :root {
             --primary-color: #16a085;
             --secondary-color: #2c3e50;
-            --accent-color: #f39c12;
-            --success-color: #27ae60;
+            --accent-color: #8fda7d;
+            --accent-light: #a4bc8d; /* Verde claro */
+            --accent-lighter: #c5d4b8; /* Verde muy claro */
+            --success-color: #2fcc1a;
             --text-primary: #2c3e50;
             --text-secondary: #7f8c8d;
             --text-light: #bdc3c7;
+            --text-dark: #1f2d2a;
+            --text-muted: #8a9690;
             --background: #ffffff;
             --background-alt: #f8f9fa;
             --background-dark: #34495e;
             --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
             --card-shadow-hover: 0 16px 40px rgba(0, 0, 0, 0.18);
+
+            /* Borders */
+            --border-light: #d9e2de;
+            --border-focus: #7ba05b;
             --border-radius: 16px;
+            
+            /* Estados */
+            --success-color: #6b9654;
+            --error-color: #c7644a;
+            
+
+            /* Backgrounds */
+            --background-light: #f8faf9;
+            --background-gray: #f2f5f3;
+            --background-accent: #eef3ed;
+            --white: #ffffff;
+
+            /* Sombras */
+            --shadow-sm: 0 1px 2px 0 rgba(44, 71, 65, 0.08);
+            --shadow-md: 0 4px 6px -1px rgba(44, 71, 65, 0.15);
+            --shadow-lg: 0 10px 15px -3px rgba(44, 71, 65, 0.15);
+            --shadow-xl: 0 20px 25px -5px rgba(44, 71, 65, 0.15);
+
+            /* Gradientes naturales */
+            --gradient-primary: linear-gradient(135deg, #7ba05b 0%, #2c4741 100%);
+            --gradient-green: linear-gradient(135deg, #a4bc8d 0%, #7ba05b 100%);
+            --gradient-subtle: linear-gradient(135deg, #eef3ed 0%, #f8faf9 100%);
         }
 
         body {
@@ -197,7 +66,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #34c4ac 0%, #2fcc1a 100%);
             position: relative;
             overflow: hidden;
         }
@@ -273,7 +142,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(8, 94, 5, 0.404);
             padding: 1rem;
             border-radius: 12px;
             backdrop-filter: blur(10px);
@@ -318,7 +187,7 @@
             font-size: 4rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
-            background: linear-gradient(45deg, #f39c12, #e74c3c);
+            background: linear-gradient(45deg, #000000, #014d23);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -635,3 +504,116 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        
+        /* Header moderno */
+        .header {
+            background: var(--white);
+            padding: 1rem 0;
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+            width: 230px;
+            height: 90px;
+        }
+
+        .ig {
+            width: 30px;
+            height: 30px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.contact-btn {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            border: 2px solid var(--primary-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link.contact-btn::after {
+            display: none;
+        }
+
+        .nav-link.contact-btn:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary-color);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+       
