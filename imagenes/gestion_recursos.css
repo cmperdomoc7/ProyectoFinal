@@ -8,7 +8,11 @@
     --background: linear-gradient(135deg, #00a86b, #2ecc71); /* Degradado moderno */
     --card-bg: #ffffff;
     --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    --shadow-sm: 0 1px 2px 0 rgba(44, 71, 65, 0.08);
     --border-radius: 14px;
+    --border-light: #d9e2de;
+    --text-light: #5a6b63;
+    --white: #ffffff;
 }
 
 
