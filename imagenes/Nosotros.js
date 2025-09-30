@@ -38,7 +38,7 @@
         
         // CTA Functions
         function startConsultation() {
-            alert('¡Excelente! Un especialista te contactará en las próximas 2 horas para tu consulta gratuita.');
+            alert('¡Excelente! Llena a continuacion el formulario despues de este mensaje y te contactaremos lo mas pronto posible.');
             console.log('Consultation requested');
             
             // You can integrate with your CRM or contact system here

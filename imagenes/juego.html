@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco-Consultor - Misión Circular</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .game-container {
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .game-header {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .game-logo {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .progress-container {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .progress-bar-wrapper {
+            background: #e9ecef;
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, #48bb78, #2ecc71);
+            height: 100%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #6c757d;
+            font-weight: 600;
+        }
+
+        .game-content {
+            padding: 2.5rem;
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            text-align: center;
+        }
+
+        .welcome-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .welcome-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .welcome-text {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .difficulty-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .difficulty-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .difficulty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .difficulty-card.selected {
+            border-color: #48bb78;
+            background: #e6ffed;
+        }
+
+        .difficulty-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .difficulty-name {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.25rem;
+        }
+
+        .difficulty-desc {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+        }
+
+        /* Question Screen */
+        .question-container {
+            display: none;
+        }
+
+        .question-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-header {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+        }
+
+        .question-category {
+            display: inline-block;
+            background: #48bb78;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .question-text {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .answers-grid {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .answer-option {
+            background: #f8f9fa;
+            padding: 1.25rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .answer-option:hover:not(.disabled) {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .answer-option.selected {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .answer-option.correct {
+            border-color: #48bb78;
+            background: #e6ffed;
+            animation: correctPulse 0.5s ease;
+        }
+
+        .answer-option.incorrect {
+            border-color: #e74c3c;
+            background: #ffe6e6;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .answer-option.disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .answer-letter {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .answer-text {
+            flex: 1;
+            font-size: 1.05rem;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+
+        .explanation-box {
+            background: #fff8e1;
+            border-left: 4px solid #f39c12;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            display: none;
+        }
+
+        .explanation-box.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .explanation-title {
+            font-weight: 700;
+            color: #f39c12;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .explanation-text {
+            color: #856404;
+            line-height: 1.7;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+            width: 100%;
+        }
+
+        .btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(72, 187, 120, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        /* Results Screen */
+        .results-screen {
+            display: none;
+            text-align: center;
+        }
+
+        .results-screen.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .results-icon {
+            font-size: 6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .results-title {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(72, 187, 120, 0.3);
+        }
+
+        .score-number {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .score-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .performance-level {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0;
+        }
+
+        .performance-title {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .performance-message {
+            color: #7f8c8d;
+            line-height: 1.7;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .game-title {
+                font-size: 1.5rem;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            .difficulty-selector {
+                grid-template-columns: 1fr;
+            }
+
+            .results-icon {
+                font-size: 4rem;
+            }
+
+            .score-number {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <div class="game-logo">🌍</div>
+            <h1 class="game-title">ECO-CONSULTOR</h1>
+            <p class="game-subtitle">Demuestra tu conocimiento en consultoría ambiental</p>
+        </div>
+
+        <div class="progress-container" id="progressContainer" style="display: none;">
+            <div class="progress-bar-wrapper">
+                <div class="progress-bar" id="progressBar">0%</div>
+            </div>
+            <div class="progress-info">
+                <span id="questionCounter">Pregunta 1 de 10</span>
+                <span id="scoreCounter">Puntuación: 0</span>
+            </div>
+        </div>
+
+        <div class="game-content">
+            <!-- Welcome Screen -->
+            <div class="welcome-screen" id="welcomeScreen">
+                <div class="welcome-icon">♻️</div>
+                <h2 class="welcome-title">¡Bienvenido, Futuro Eco-Consultor!</h2>
+                <p class="welcome-text">
+                    Pon a prueba tus conocimientos sobre servicios ambientales, reciclaje, sostenibilidad y gestión ambiental. 
+                    Responde 10 preguntas y conviértete en un experto consultor.
+                </p>
+
+                <div class="difficulty-selector">
+                    <div class="difficulty-card" onclick="selectDifficulty('easy')">
+                        <div class="difficulty-icon">🌱</div>
+                        <div class="difficulty-name">Principiante</div>
+                        <div class="difficulty-desc">10 preguntas básicas</div>
+                    </div>
+                    <div class="difficulty-card selected" onclick="selectDifficulty('medium')">
+                        <div class="difficulty-icon">🌳</div>
+                        <div class="difficulty-name">Intermedio</div>
+                        <div class="difficulty-desc">10 preguntas moderadas</div>
+                    </div>
+                    <div class="difficulty-card" onclick="selectDifficulty('hard')">
+                        <div class="difficulty-icon">🏆</div>
+                        <div class="difficulty-name">Experto</div>
+                        <div class="difficulty-desc">10 preguntas avanzadas</div>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="startGame()">Comenzar Evaluación</button>
+            </div>
+
+            <!-- Question Screen -->
+            <div class="question-container" id="questionContainer">
+                <div class="question-header">
+                    <span class="question-category" id="questionCategory">Categoría</span>
+                    <div class="question-text" id="questionText"></div>
+                </div>
+
+                <div class="answers-grid" id="answersGrid"></div>
+
+                <div class="explanation-box" id="explanationBox">
+                    <div class="explanation-title">
+                        <span id="explanationIcon">💡</span>
+                        <span id="explanationTitle">Explicación</span>
+                    </div>
+                    <div class="explanation-text" id="explanationText"></div>
+                </div>
+
+                <button class="btn" id="nextBtn" onclick="nextQuestion()" style="display: none;">
+                    Siguiente Pregunta
+                </button>
+            </div>
+
+            <!-- Results Screen -->
+            <div class="results-screen" id="resultsScreen">
+                <div class="results-icon" id="resultsIcon">🎉</div>
+                <h2 class="results-title" id="resultsTitle">¡Evaluación Completada!</h2>
+
+                <div class="score-display">
+                    <div class="score-number" id="finalScore">0</div>
+                    <div class="score-label">puntos de 1000</div>
+                </div>
+
+                <div class="performance-level" id="performanceLevel">
+                    <div class="performance-title" id="performanceTitle"></div>
+                    <div class="performance-message" id="performanceMessage"></div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-value" id="correctAnswers">0</div>
+                        <div class="stat-label">Correctas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">❌</div>
+                        <div class="stat-value" id="incorrectAnswers">0</div>
+                        <div class="stat-label">Incorrectas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-value" id="accuracyRate">0%</div>
+                        <div class="stat-label">Precisión</div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn" onclick="restartGame()">Jugar de Nuevo</button>
+                    <button class="btn btn-secondary" onclick="shareResults()">Compartir Resultados</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Game Data
+        const questions = {
+            easy: [
+                {
+                    category: "Reciclaje Básico",
+                    question: "¿En qué contenedor se debe depositar una botella de plástico vacía?",
+                    answers: ["Contenedor amarillo", "Contenedor azul", "Contenedor verde", "Contenedor gris"],
+                    correct: 0,
+                    explanation: "Las botellas de plástico se depositan en el contenedor amarillo, destinado a envases de plástico, latas y briks."
+                },
+                {
+                    category: "Sostenibilidad",
+                    question: "¿Qué significa el término 'desarrollo sostenible'?",
+                    answers: [
+                        "Desarrollo rápido y económico",
+                        "Satisfacer necesidades actuales sin comprometer las futuras",
+                        "Usar todos los recursos disponibles",
+                        "Producir más con menos costo"
+                    ],
+                    correct: 1,
+                    explanation: "El desarrollo sostenible busca satisfacer las necesidades del presente sin comprometer la capacidad de las futuras generaciones de satisfacer las suyas."
+                },
+                {
+                    category: "Residuos",
+                    question: "¿Cuánto tiempo tarda aproximadamente en degradarse una botella de vidrio?",
+                    answers: ["10 años", "100 años", "1,000 años", "4,000 años"],
+                    correct: 3,
+                    explanation: "Una botella de vidrio puede tardar hasta 4,000 años en degradarse, por eso es fundamental reciclarla."
+                },
+                {
+                    category: "Energía",
+                    question: "¿Cuál de estas es una fuente de energía renovable?",
+                    answers: ["Carbón", "Petróleo", "Energía solar", "Gas natural"],
+                    correct: 2,
+                    explanation: "La energía solar es renovable porque proviene del sol, una fuente inagotable a escala humana."
+                },
+                {
+                    category: "Agua",
+                    question: "¿Qué porcentaje aproximado del agua del planeta es dulce y accesible?",
+                    answers: ["50%", "25%", "10%", "Menos del 1%"],
+                    correct: 3,
+                    explanation: "Solo menos del 1% del agua del planeta es dulce y está disponible para consumo humano, por eso debemos cuidarla."
+                },
+                {
+                    category: "Reciclaje",
+                    question: "¿Qué residuos NO se pueden reciclar en el contenedor azul?",
+                    answers: ["Periódicos", "Cajas de cartón", "Papel de cocina usado", "Revistas"],
+                    correct: 2,
+                    explanation: "El papel de cocina usado va al contenedor orgánico, ya que está contaminado y no se puede reciclar."
+                },
+                {
+                    category: "Biodiversidad",
+                    question: "¿Qué son las especies en peligro de extinción?",
+                    answers: [
+                        "Especies que son peligrosas",
+                        "Especies con poblaciones muy reducidas",
+                        "Especies invasoras",
+                        "Especies muy antiguas"
+                    ],
+                    correct: 1,
+                    explanation: "Son especies con poblaciones tan reducidas que corren el riesgo de desaparecer completamente."
+                },
+                {
+                    category: "Contaminación",
+                    question: "¿Cuál es la principal causa del cambio climático?",
+                    answers: [
+                        "Emisiones de gases de efecto invernadero",
+                        "Los volcanes",
+                        "El ciclo natural del planeta",
+                        "Los terremotos"
+                    ],
+                    correct: 0,
+                    explanation: "Las emisiones de gases de efecto invernadero por actividades humanas son la principal causa del cambio climático actual."
+                },
+                {
+                    category: "Economía Circular",
+                    question: "¿Qué significa 'economía circular'?",
+                    answers: [
+                        "Economía de productos circulares",
+                        "Reutilizar y reciclar para minimizar residuos",
+                        "Economía basada en el dinero",
+                        "Economía sin productos lineales"
+                    ],
+                    correct: 1,
+                    explanation: "La economía circular busca mantener productos y materiales en uso el mayor tiempo posible, minimizando residuos."
+                },
+                {
+                    category: "Gestión Ambiental",
+                    question: "¿Qué es una huella de carbono?",
+                    answers: [
+                        "La marca que deja el carbón",
+                        "Medida de gases contaminantes emitidos",
+                        "El color negro del carbono",
+                        "Un tipo de combustible"
+                    ],
+                    correct: 1,
+                    explanation: "La huella de carbono mide la cantidad total de gases de efecto invernadero que genera una actividad, producto o persona."
+                }
+            ],
+            medium: [
+                {
+                    category: "Gestión de Residuos",
+                    question: "¿Qué es un Estudio de Impacto Ambiental (EIA)?",
+                    answers: [
+                        "Un documento sobre el clima",
+                        "Evaluación de efectos ambientales de un proyecto",
+                        "Un estudio de la biodiversidad",
+                        "Una medición de contaminación"
+                    ],
+                    correct: 1,
+                    explanation: "El EIA evalúa los posibles impactos ambientales de un proyecto antes de su ejecución, permitiendo implementar medidas de mitigación."
+                },
+                {
+                    category: "Certificaciones",
+                    question: "¿Qué certifica la norma ISO 14001?",
+                    answers: [
+                        "Calidad de productos",
+                        "Sistemas de gestión ambiental",
+                        "Seguridad laboral",
+                        "Gestión de calidad"
+                    ],
+                    correct: 1,
+                    explanation: "ISO 14001 certifica que una organización tiene un sistema de gestión ambiental efectivo para minimizar su impacto negativo."
+                },
+                {
+                    category: "Reciclaje Avanzado",
+                    question: "¿Qué porcentaje de energía se ahorra reciclando aluminio en lugar de producirlo nuevo?",
+                    answers: ["30%", "50%", "75%", "95%"],
+                    correct: 3,
+                    explanation: "Reciclar aluminio ahorra aproximadamente el 95% de la energía necesaria para producirlo desde materia prima."
+                },
+                {
+                    category: "Servicios Ambientales",
+                    question: "¿Qué son los servicios ecosistémicos?",
+                    answers: [
+                        "Servicios de jardinería",
+                        "Beneficios que los ecosistemas proveen a la humanidad",
+                        "Servicios de reciclaje",
+                        "Servicios de limpieza"
+                    ],
+                    correct: 1,
+                    explanation: "Los servicios ecosistémicos son los beneficios que obtenemos de la naturaleza: agua limpia, aire puro, polinización, etc."
+                },
+                {
+                    category: "Tratamiento de Agua",
+                    question: "¿Qué proceso elimina contaminantes del agua residual?",
+                    answers: [
+                        "Filtración simple",
+                        "Tratamiento primario, secundario y terciario",
+                        "Hervir el agua",
+                        "Agregar cloro únicamente"
+                    ],
+                    correct: 1,
+                    explanation: "El tratamiento de aguas residuales incluye etapas primarias (física), secundarias (biológica) y terciarias (desinfección) para eliminar contaminantes."
+                },
+                {
+                    category: "Permisos Ambientales",
+                    question: "¿Qué documento se requiere para aprovechar recursos naturales renovables?",
+                    answers: [
+                        "Licencia de construcción",
+                        "Concesión o permiso ambiental",
+                        "Registro mercantil",
+                        "Certificado de calidad"
+                    ],
+                    correct: 1,
+                    explanation: "Se requiere una concesión o permiso ambiental otorgado por la autoridad competente para aprovechar legalmente recursos naturales."
+                },
+                {
+                    category: "Huella Hídrica",
+                    question: "¿Cuántos litros de agua aproximadamente se necesitan para producir 1 kg de carne de res?",
+                    answers: ["500 litros", "1,500 litros", "5,000 litros", "15,000 litros"],
+                    correct: 3,
+                    explanation: "Se requieren aproximadamente 15,000 litros de agua para producir 1 kg de carne de res, considerando toda la cadena de producción."
+                },
+                {
+                    category: "Energías Renovables",
+                    question: "¿Cuál es la capacidad de una planta solar de generar energía durante el día nublado?",
+                    answers: [
+                        "0%, no genera nada",
+                        "10-25% de su capacidad",
+                        "50% de su capacidad",
+                        "100%, igual que en días soleados"
+                    ],
+                    correct: 1,
+                    explanation: "Los paneles solares pueden generar entre 10-25% de su capacidad en días nublados, aunque con menor eficiencia que en días soleados."
+                },
+                {
+                    category: "Gestión Forestal",
+                    question: "¿Qué es la reforestación?",
+                    answers: [
+                        "Talar árboles de manera controlada",
+                        "Plantar árboles en áreas deforestadas",
+                        "Proteger bosques naturales",
+                        "Crear parques urbanos"
+                    ],
+                    correct: 1,
+                    explanation: "La reforestación es el proceso de plantar árboles en áreas que anteriormente estaban cubiertas de bosques y fueron deforestadas."
+                },
+                {
+                    category: "Auditoría Ambiental",
+                    question: "¿Qué evalúa una auditoría ambiental?",
+                    answers: [
+                        "Solo la contaminación del aire",
+                        "El cumplimiento de normativas y desempeño ambiental",
+                        "La calidad de productos",
+                        "Las ventas de la empresa"
+                    ],
+                    correct: 1,
+                    explanation: "Una auditoría ambiental evalúa el cumplimiento normativo y el desempeño ambiental global de una organización."
+                }
+            ],
+            hard: [
+                {
+                    category: "Legislación Ambiental",
+                    question: "¿Qué establece el principio de 'quien contamina paga'?",
+                    answers: [
+                        "Los gobiernos deben pagar por la contaminación",
+                        "El responsable debe asumir los costos ambientales",
+                        "Se debe multar a todos los contaminadores",
+                        "La sociedad paga por la contaminación"
+                    ],
+                    correct: 1,
+                    explanation: "Este principio establece que quien causa daño ambiental debe asumir los costos de prevención, control y reparación."
+                },
+                {
+                    category: "Cambio Climático",
+                    question: "¿Cuál es el principal gas de efecto invernadero en términos de cantidad emitida?",
+                    answers: ["Metano (CH4)", "Dióxido de carbono (CO2)", "Óxido nitroso (N2O)", "Ozono (O3)"],
+                    correct: 1,
+                    explanation: "El CO2 es el principal GEI en términos de volumen emitido, aunque el metano es más potente por molécula."
+                },
+                {
+                    category: "Economía Circular",
+                    question: "¿Qué estrategia de la economía circular tiene mayor jerarquía?",
+                    answers: ["Reciclar", "Reducir", "Reutilizar", "Recuperar"],
+                    correct: 1,
+                    explanation: "En la jerarquía de residuos, 'Reducir' tiene mayor prioridad porque previene la generación de residuos desde el origen."
+                },
+                {
+                    category: "Biodiversidad",
+                    question: "¿Qué es un corredor biológico?",
+                    answers: [
+                        "Un camino para turistas en la naturaleza",
+                        "Una ruta migratoria de aves",
+                        "Área que conecta hábitats fragmentados",
+                        "Un zoológico natural"
+                    ],
+                    correct: 2,
+                    explanation: "Los corredores biológicos conectan áreas naturales fragmentadas, permitiendo el movimiento de especies y el flujo genético."
+                },
+                {
+                    category: "Consultoría Avanzada",
+                    question: "¿Qué metodología evalúa el impacto ambiental de un producto durante todo su ciclo de vida?",
+                    answers: ["EIA", "ACV (Análisis de Ciclo de Vida)", "ISO 14001", "Auditoría ambiental"],
+                    correct: 1,
+                    explanation: "El ACV evalúa los impactos ambientales desde la extracción de materias primas hasta el fin de vida del producto."
+                },
+                {
+                    category: "Gestión Hídrica",
+                    question: "¿Qué es la eutrofización de cuerpos de agua?",
+                    answers: [
+                        "Limpieza natural del agua",
+                        "Exceso de nutrientes que causa proliferación de algas",
+                        "Congelamiento del agua",
+                        "Aumento de la salinidad"
+                    ],
+                    correct: 1,
+                    explanation: "La eutrofización ocurre por exceso de nutrientes (nitrógeno y fósforo) que causan crecimiento excesivo de algas, reduciendo el oxígeno."
+                },
+                {
+                    category: "Bonos de Carbono",
+                    question: "¿Qué representa un bono de carbono?",
+                    answers: [
+                        "Un certificado de contaminación permitida",
+                        "Una tonelada de CO2 equivalente reducida",
+                        "Un permiso para talar árboles",
+                        "Un subsidio gubernamental"
+                    ],
+                    correct: 1,
+                    explanation: "Un bono de carbono representa la reducción certificada de una tonelada de CO2 equivalente, que puede comercializarse."
+                },
+                {
+                    category: "Remediación",
+                    question: "¿Qué técnica utiliza plantas para descontaminar suelos?",
+                    answers: ["Biorremediación", "Fitorremediación", "Bioaumentación", "Incineración"],
+                    correct: 1,
+                    explanation: "La fitorremediación usa plantas para absorber, acumular o degradar contaminantes del suelo y agua."
+                },
+                {
+                    category: "Indicadores Ambientales",
+                    question: "¿Qué mide el índice de calidad del aire (ICA)?",
+                    answers: [
+                        "Solo el CO2",
+                        "Concentración de múltiples contaminantes atmosféricos",
+                        "La temperatura del aire",
+                        "La humedad relativa"
+                    ],
+                    correct: 1,
+                    explanation: "El ICA mide la concentración de varios contaminantes (PM2.5, PM10, O3, CO, SO2, NO2) y su efecto en la salud."
+                },
+                {
+                    category: "Energía",
+                    question: "¿Qué es el factor de emisión en gestión de GEI?",
+                    answers: [
+                        "La velocidad de emisión de gases",
+                        "La cantidad de GEI emitida por unidad de actividad",
+                        "El tiempo de permanencia del gas",
+                        "La temperatura de emisión"
+                    ],
+                    correct: 1,
+                    explanation: "El factor de emisión indica cuánto GEI se emite por unidad de actividad (ej: kg CO2/kWh), esencial para inventarios de emisiones."
+                }
+            ]
+        };
+
+        // Game State
+        let gameState = {
+            difficulty: 'medium',
+            currentQuestion: 0,
+            score: 0,
+            correctAnswers: 0,
+            incorrectAnswers: 0,
+            selectedAnswer: null,
+            answered: false,
+            questions: []
+        };
+
+        // Initialize
+        function selectDifficulty(level) {
+            gameState.difficulty = level;
+            document.querySelectorAll('.difficulty-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.target.closest('.difficulty-card').classList.add('selected');
+        }
+
+        function startGame() {
+            // Shuffle questions
+            gameState.questions = [...questions[gameState.difficulty]].sort(() => Math.random() - 0.5);
+            gameState.currentQuestion = 0;
+            gameState.score = 0;
+            gameState.correctAnswers = 0;
+            gameState.incorrectAnswers = 0;
+
+            document.getElementById('welcomeScreen').style.display = 'none';
+            document.getElementById('progressContainer').style.display = 'block';
+            document.getElementById('questionContainer').classList.add('active');
+
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const question = gameState.questions[gameState.currentQuestion];
+            gameState.answered = false;
+            gameState.selectedAnswer = null;
+
+            document.getElementById('questionCategory').textContent = question.category;
+            document.getElementById('questionText').textContent = question.question;
+
+            // Update progress
+            const progress = ((gameState.currentQuestion + 1) / gameState.questions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressBar').textContent = Math.round(progress) + '%';
+            document.getElementById('questionCounter').textContent = `Pregunta ${gameState.currentQuestion + 1} de ${gameState.questions.length}`;
+            document.getElementById('scoreCounter').textContent = `Puntuación: ${gameState.score}`;
+
+            // Load answers
+            const answersGrid = document.getElementById('answersGrid');
+            answersGrid.innerHTML = '';
+
+            const letters = ['A', 'B', 'C', 'D'];
+            question.answers.forEach((answer, index) => {
+                const answerDiv = document.createElement('div');
+                answerDiv.className = 'answer-option';
+                answerDiv.onclick = () => selectAnswer(index);
+
+                answerDiv.innerHTML = `
+                    <div class="answer-letter">${letters[index]}</div>
+                    <div class="answer-text">${answer}</div>
+                `;
+
+                answersGrid.appendChild(answerDiv);
+            });
+
+            document.getElementById('explanationBox').classList.remove('show');
+            document.getElementById('nextBtn').style.display = 'none';
+        }
+
+        function selectAnswer(index) {
+            if (gameState.answered) return;
+
+            const question = gameState.questions[gameState.currentQuestion];
+            gameState.selectedAnswer = index;
+            gameState.answered = true;
+
+            const answerOptions = document.querySelectorAll('.answer-option');
+            answerOptions.forEach(option => option.classList.add('disabled'));
+
+            if (index === question.correct) {
+                // Correct answer
+                answerOptions[index].classList.add('correct');
+                gameState.correctAnswers++;
+                
+                // Calculate score based on difficulty
+                let points = 0;
+                if (gameState.difficulty === 'easy') points = 80;
+                else if (gameState.difficulty === 'medium') points = 100;
+                else points = 120;
+                
+                gameState.score += points;
+
+                document.getElementById('explanationIcon').textContent = '✅';
+                document.getElementById('explanationTitle').textContent = '¡Correcto!';
+                document.getElementById('explanationBox').style.background = '#e6ffed';
+                document.getElementById('explanationBox').style.borderLeftColor = '#48bb78';
+                document.getElementById('explanationText').style.color = '#2d5f3f';
+            } else {
+                // Incorrect answer
+                answerOptions[index].classList.add('incorrect');
+                answerOptions[question.correct].classList.add('correct');
+                gameState.incorrectAnswers++;
+
+                document.getElementById('explanationIcon').textContent = '❌';
+                document.getElementById('explanationTitle').textContent = 'Incorrecto';
+                document.getElementById('explanationBox').style.background = '#fff5f5';
+                document.getElementById('explanationBox').style.borderLeftColor = '#e74c3c';
+                document.getElementById('explanationText').style.color = '#c0392b';
+            }
+
+            document.getElementById('explanationText').textContent = question.explanation;
+            document.getElementById('explanationBox').classList.add('show');
+            document.getElementById('nextBtn').style.display = 'block';
+            document.getElementById('scoreCounter').textContent = `Puntuación: ${gameState.score}`;
+        }
+
+        function nextQuestion() {
+            gameState.currentQuestion++;
+
+            if (gameState.currentQuestion < gameState.questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('questionContainer').classList.remove('active');
+            document.getElementById('resultsScreen').classList.add('active');
+
+            const totalQuestions = gameState.questions.length;
+            const accuracy = Math.round((gameState.correctAnswers / totalQuestions) * 100);
+
+            document.getElementById('finalScore').textContent = gameState.score;
+            document.getElementById('correctAnswers').textContent = gameState.correctAnswers;
+            document.getElementById('incorrectAnswers').textContent = gameState.incorrectAnswers;
+            document.getElementById('accuracyRate').textContent = accuracy + '%';
+
+            // Determine performance level
+            let icon = '';
+            let title = '';
+            let message = '';
+
+            if (accuracy >= 90) {
+                icon = '🏆';
+                title = 'Consultor Experto';
+                message = '¡Excepcional! Tienes un conocimiento sobresaliente en servicios ambientales. Estás listo para liderar proyectos de consultoría ambiental de alto nivel.';
+            } else if (accuracy >= 70) {
+                icon = '🌟';
+                title = 'Consultor Competente';
+                message = '¡Muy bien! Demuestras sólidos conocimientos en gestión ambiental. Con un poco más de estudio, podrás convertirte en un experto.';
+            } else if (accuracy >= 50) {
+                icon = '📚';
+                title = 'Consultor en Desarrollo';
+                message = 'Buen trabajo, tienes bases importantes. Te recomendamos profundizar en las áreas donde tuviste dificultades para mejorar tu expertise.';
+            } else {
+                icon = '🌱';
+                title = 'Consultor Principiante';
+                message = 'Estás comenzando tu camino. No te desanimes, la consultoría ambiental requiere estudio constante. ¡Sigue aprendiendo!';
+            }
+
+            document.getElementById('resultsIcon').textContent = icon;
+            document.getElementById('performanceTitle').textContent = title;
+            document.getElementById('performanceMessage').textContent = message;
+        }
+
+        function restartGame() {
+            document.getElementById('resultsScreen').classList.remove('active');
+            document.getElementById('welcomeScreen').style.display = 'block';
+            document.getElementById('progressContainer').style.display = 'none';
+            
+            gameState = {
+                difficulty: 'medium',
+                currentQuestion: 0,
+                score: 0,
+                correctAnswers: 0,
+                incorrectAnswers: 0,
+                selectedAnswer: null,
+                answered: false,
+                questions: []
+            };
+        }
+
+        function shareResults() {
+            const accuracy = Math.round((gameState.correctAnswers / gameState.questions.length) * 100);
+            const text = `¡Obtuve ${gameState.score} puntos con ${accuracy}% de precisión en Eco-Consultor de Misión Circular! 🌍♻️ ¿Puedes superarme?`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Eco-Consultor',
+                    text: text
+                }).catch(err => console.log('Error sharing:', err));
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('✅ Resultados copiados al portapapeles. ¡Compártelos en tus redes sociales!');
+                }).catch(() => {
+                    alert(text);
+                });
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('questionContainer').classList.contains('active') && !gameState.answered) {
+                if (e.key === '1' || e.key === 'a') selectAnswer(0);
+                else if (e.key === '2' || e.key === 'b') selectAnswer(1);
+                else if (e.key === '3' || e.key === 'c') selectAnswer(2);
+                else if (e.key === '4' || e.key === 'd') selectAnswer(3);
+            }
+            
+            if (e.key === 'Enter' && document.getElementById('nextBtn').style.display === 'block') {
+                nextQuestion();
+            }
+        });
+    </script>
+</body>
+</html>
