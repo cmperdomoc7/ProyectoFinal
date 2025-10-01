@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de suelo y biodiversidad</title>
+    <link rel="stylesheet" href="gestion_recursos.css">
+</head>
+<body>
+    <!-- Header (NO se modifica) -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#"><img src="logo.png" alt="MISIÓN CIRCULAR" class="logo"></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="Pagina1.html" class="nav-link">Inicio</a></li>
+                <li><a href="#acerca" class="nav-link">Nosotros</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#contacto" class="nav-link contact-btn">CONTACTO</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido Informativo -->
+    <main class="contenido">
+        <section id="riesgo_quimico">
+            <div class="service-card">
+                <h2>Elaboración de Matrices de Compatibilidad</h2>
+                <ul>
+                    <li>
+                        <strong>Inventario de sustancias químicas</strong>
+                        Identificación por nombre técnico, CAS, cantidad, estado físico, ubicación y uso.
+                    </li>
+                    <li>
+                        <strong>Clasificación SGA</strong>
+                        Asignación de pictogramas, frases de peligro (H) y precaución (P), con resumen visual por área.
+                    </li>
+                    <li>
+                        <strong>Matriz de compatibilidad</strong>
+                        Documento técnico y señalización para el manejo seguro.
+                    </li>
+                    <li>
+                        <strong>Rutas de exposición</strong>
+                        Mapas de inhalación, ingestión y contacto dérmico, fichas de exposición ocupacional y guía de sensibilización para trabajadores.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h2>Plan de Reducción y Sustitución de Sustancias Peligrosas</h2>
+                <ul>
+                    <li>
+                        <strong>Evaluación de alternativas seguras</strong>
+                        Sustitución de químicos peligrosos por insumos sostenibles.
+                    </li>
+                    <li>
+                        <strong>Plan de transición técnica</strong>
+                        Implementación gradual con cronogramas y metas verificables.
+                    </li>
+                    <li>
+                        <strong>Cumplimiento normativo</strong>
+                        Integración con políticas de economía circular y estándares de seguridad industrial.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h2>Fichas de Seguridad y Cultura de Seguridad Química</h2>
+                <ul>
+                    <li>
+                        <strong>Actualización de hojas de seguridad (MSDS)</strong>
+                        Bajo normativas nacionales e internacionales.
+                    </li>
+                    <li>
+                        <strong>Capacitación en manejo seguro de sustancias</strong>
+                        Formación a trabajadores en identificación de riesgos, emergencias y medidas preventivas.
+                    </li>
+                    <li>
+                        <strong>Programas de cultura preventiva</strong>
+                        Señalización, protocolos de actuación y guías didácticas para fortalecer la seguridad laboral.
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Menú móvil
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

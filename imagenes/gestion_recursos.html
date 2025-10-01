@@ -28,20 +28,52 @@
     <!-- Contenido Informativo -->
     <main class="contenido">
         <section id="servicios">
-            <h2>VERTIMIENTOS</h2>
-            <ul>
-                <li><strong>Modelación de vertimiento y pluma:</strong> levantamiento de datos, set-up de modelo (HEC-RAS/alterno), escenarios y recomendaciones.</li>
-                <li><strong>Trampa de grasas:</strong> balance de cargas, dimensionamiento preliminar, checklist normativo y memoria de cálculo.</li>
-                <li><strong>Aforo de caudal y caracterización básica:</strong> plan de aforo, cadena de custodia y coordinación de laboratorio externo.</li>
-                <li><strong>Asesoría cumplimiento normativo Resolución 0631/2015:</strong> diagnóstico, auditoría, análisis de parámetros, plan de mejoramiento y asistencia en reporte.</li>
-            </ul>
+            <div class="service-card">
+                <h2>Vertimientos</h2>
+                <ul>
+                    <li>
+                        <strong>Modelación de vertimiento y pluma</strong>
+                        Levantamiento de datos, set-up de modelo (HEC-RAS/alterno), escenarios y recomendaciones.
+                    </li>
+                    <li>
+                        <strong>Trampa de grasas</strong>
+                        Balance de cargas, dimensionamiento preliminar, checklist normativo y memoria de cálculo.
+                    </li>
+                    <li>
+                        <strong>Aforo de caudal y caracterización básica</strong>
+                        Plan de aforo, cadena de custodia y coordinación de laboratorio externo.
+                    </li>
+                    <li>
+                        <strong>Asesoría cumplimiento normativo Resolución 0631/2015</strong>
+                        Diagnóstico, auditoría, análisis de parámetros, plan de mejoramiento y asistencia en reporte.
+                    </li>
+                </ul>
+            </div>
 
-            <h2>USO EFICIENTE DEL AGUA</h2>
-            <ul>
-                <li><strong>Modelación de vertimiento y pluma:</strong> levantamiento de datos, set-up de modelo (HEC-RAS/alterno), escenarios y recomendaciones.</li>
-                <li><strong>Trampa de grasas:</strong> balance de cargas, dimensionamiento preliminar, checklist normativo y memoria de cálculo.</li>
-            </ul>
+            <div class="service-card">
+                <h2>Uso Eficiente del Agua</h2>
+                <ul>
+                    <li>
+                        <strong>Modelación de vertimiento y pluma</strong>
+                        Levantamiento de datos, set-up de modelo (HEC-RAS/alterno), escenarios y recomendaciones.
+                    </li>
+                    <li>
+                        <strong>Trampa de grasas</strong>
+                        Balance de cargas, dimensionamiento preliminar, checklist normativo y memoria de cálculo.
+                    </li>
+                </ul>
+            </div>
         </section>
     </main>
+
+    <script>
+        // Menú móvil
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>

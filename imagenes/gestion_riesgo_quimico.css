@@ -1,6 +1,4 @@
-
-        /* ==== Variables de diseño ==== */
-        :root {
+:root {
             --primary-color: #00a86b;
             --secondary-color: #004700;
             --accent-color: #2ecc71;
@@ -188,7 +186,7 @@
         }
 
         .service-card h2::before {
-            content: '💧';
+            content: '⚠️';
             font-size: 2rem;
         }
 
@@ -320,4 +318,3 @@
             position: relative;
             z-index: 1;
         }
-  
