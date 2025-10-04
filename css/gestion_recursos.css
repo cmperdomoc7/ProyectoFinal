@@ -1,5 +1,4 @@
-
-        /* ==== Variables de diseño ==== */
+/* ==== Variables de diseño ==== */
         :root {
             --primary-color: #00a86b;
             --secondary-color: #004700;
@@ -320,4 +319,3 @@
             position: relative;
             z-index: 1;
         }
-  

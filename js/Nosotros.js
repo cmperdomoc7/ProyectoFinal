@@ -53,30 +53,6 @@
         }
 
         function downloadGuide() {
-            alert('Tu guía "10 Claves para el Éxito Ambiental Empresarial" se descargará automáticamente.');
+            alert('Te llevaremos a nuestra linea de WhatsApp');
             console.log('Guide download initiated');
-            
-            // Here you would typically trigger a download
-            // For demo purposes, we'll just log the action
-            const downloadInfo = {
-                action: 'guide_download',
-                guide: 'environmental_success_keys',
-                timestamp: new Date().toISOString()
-            };
-            
-            console.log('Download info:', downloadInfo);
         }
-
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });

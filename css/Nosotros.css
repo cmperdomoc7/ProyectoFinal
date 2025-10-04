@@ -378,7 +378,7 @@
         /* CTA Section */
         .cta-section {
             padding: 5rem 2rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--success-color));
+            background: linear-gradient(135deg, #34c4ac, #2fcc1a );
             text-align: center;
             color: white;
         }

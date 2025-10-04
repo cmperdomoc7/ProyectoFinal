@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #34c4aca9 0%, #2fcc1abb 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -31,7 +31,7 @@
         }
 
         .game-header {
-            background: linear-gradient(135deg, #48bb78, #38a169);
+            background: linear-gradient(90deg, #e2c418, #eebb13);
             color: white;
             padding: 2rem;
             text-align: center;
@@ -68,7 +68,7 @@
         }
 
         .progress-bar {
-            background: linear-gradient(90deg, #48bb78, #2ecc71);
+            background: linear-gradient(90deg, #e2c418, #eebb13);
             height: 100%;
             transition: width 0.5s ease;
             display: flex;
@@ -186,17 +186,7 @@
             margin-bottom: 2rem;
         }
 
-        .question-category {
-            display: inline-block;
-            background: #48bb78;
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
+    
         .question-text {
             font-size: 1.4rem;
             color: #2c3e50;
@@ -263,7 +253,7 @@
         .answer-letter {
             width: 40px;
             height: 40px;
-            background: #667eea;
+            background: #3d3d3d;
             color: white;
             border-radius: 50%;
             display: flex;
@@ -577,14 +567,12 @@
         const questions = {
             easy: [
                 {
-                    category: "Reciclaje Básico",
                     question: "¿En qué contenedor se debe depositar una botella de plástico vacía?",
                     answers: ["Contenedor amarillo", "Contenedor azul", "Contenedor verde", "Contenedor gris"],
                     correct: 0,
                     explanation: "Las botellas de plástico se depositan en el contenedor amarillo, destinado a envases de plástico, latas y briks."
                 },
                 {
-                    category: "Sostenibilidad",
                     question: "¿Qué significa el término 'desarrollo sostenible'?",
                     answers: [
                         "Desarrollo rápido y económico",
@@ -596,35 +584,30 @@
                     explanation: "El desarrollo sostenible busca satisfacer las necesidades del presente sin comprometer la capacidad de las futuras generaciones de satisfacer las suyas."
                 },
                 {
-                    category: "Residuos",
                     question: "¿Cuánto tiempo tarda aproximadamente en degradarse una botella de vidrio?",
                     answers: ["10 años", "100 años", "1,000 años", "4,000 años"],
                     correct: 3,
                     explanation: "Una botella de vidrio puede tardar hasta 4,000 años en degradarse, por eso es fundamental reciclarla."
                 },
                 {
-                    category: "Energía",
                     question: "¿Cuál de estas es una fuente de energía renovable?",
                     answers: ["Carbón", "Petróleo", "Energía solar", "Gas natural"],
                     correct: 2,
                     explanation: "La energía solar es renovable porque proviene del sol, una fuente inagotable a escala humana."
                 },
                 {
-                    category: "Agua",
                     question: "¿Qué porcentaje aproximado del agua del planeta es dulce y accesible?",
                     answers: ["50%", "25%", "10%", "Menos del 1%"],
                     correct: 3,
                     explanation: "Solo menos del 1% del agua del planeta es dulce y está disponible para consumo humano, por eso debemos cuidarla."
                 },
                 {
-                    category: "Reciclaje",
                     question: "¿Qué residuos NO se pueden reciclar en el contenedor azul?",
                     answers: ["Periódicos", "Cajas de cartón", "Papel de cocina usado", "Revistas"],
                     correct: 2,
                     explanation: "El papel de cocina usado va al contenedor orgánico, ya que está contaminado y no se puede reciclar."
                 },
                 {
-                    category: "Biodiversidad",
                     question: "¿Qué son las especies en peligro de extinción?",
                     answers: [
                         "Especies que son peligrosas",
@@ -636,7 +619,6 @@
                     explanation: "Son especies con poblaciones tan reducidas que corren el riesgo de desaparecer completamente."
                 },
                 {
-                    category: "Contaminación",
                     question: "¿Cuál es la principal causa del cambio climático?",
                     answers: [
                         "Emisiones de gases de efecto invernadero",
@@ -648,7 +630,6 @@
                     explanation: "Las emisiones de gases de efecto invernadero por actividades humanas son la principal causa del cambio climático actual."
                 },
                 {
-                    category: "Economía Circular",
                     question: "¿Qué significa 'economía circular'?",
                     answers: [
                         "Economía de productos circulares",
@@ -660,7 +641,6 @@
                     explanation: "La economía circular busca mantener productos y materiales en uso el mayor tiempo posible, minimizando residuos."
                 },
                 {
-                    category: "Gestión Ambiental",
                     question: "¿Qué es una huella de carbono?",
                     answers: [
                         "La marca que deja el carbón",
@@ -674,7 +654,6 @@
             ],
             medium: [
                 {
-                    category: "Gestión de Residuos",
                     question: "¿Qué es un Estudio de Impacto Ambiental (EIA)?",
                     answers: [
                         "Un documento sobre el clima",
@@ -686,7 +665,6 @@
                     explanation: "El EIA evalúa los posibles impactos ambientales de un proyecto antes de su ejecución, permitiendo implementar medidas de mitigación."
                 },
                 {
-                    category: "Certificaciones",
                     question: "¿Qué certifica la norma ISO 14001?",
                     answers: [
                         "Calidad de productos",
@@ -698,14 +676,12 @@
                     explanation: "ISO 14001 certifica que una organización tiene un sistema de gestión ambiental efectivo para minimizar su impacto negativo."
                 },
                 {
-                    category: "Reciclaje Avanzado",
                     question: "¿Qué porcentaje de energía se ahorra reciclando aluminio en lugar de producirlo nuevo?",
                     answers: ["30%", "50%", "75%", "95%"],
                     correct: 3,
                     explanation: "Reciclar aluminio ahorra aproximadamente el 95% de la energía necesaria para producirlo desde materia prima."
                 },
                 {
-                    category: "Servicios Ambientales",
                     question: "¿Qué son los servicios ecosistémicos?",
                     answers: [
                         "Servicios de jardinería",
@@ -717,7 +693,6 @@
                     explanation: "Los servicios ecosistémicos son los beneficios que obtenemos de la naturaleza: agua limpia, aire puro, polinización, etc."
                 },
                 {
-                    category: "Tratamiento de Agua",
                     question: "¿Qué proceso elimina contaminantes del agua residual?",
                     answers: [
                         "Filtración simple",
@@ -729,7 +704,6 @@
                     explanation: "El tratamiento de aguas residuales incluye etapas primarias (física), secundarias (biológica) y terciarias (desinfección) para eliminar contaminantes."
                 },
                 {
-                    category: "Permisos Ambientales",
                     question: "¿Qué documento se requiere para aprovechar recursos naturales renovables?",
                     answers: [
                         "Licencia de construcción",
@@ -741,14 +715,12 @@
                     explanation: "Se requiere una concesión o permiso ambiental otorgado por la autoridad competente para aprovechar legalmente recursos naturales."
                 },
                 {
-                    category: "Huella Hídrica",
                     question: "¿Cuántos litros de agua aproximadamente se necesitan para producir 1 kg de carne de res?",
                     answers: ["500 litros", "1,500 litros", "5,000 litros", "15,000 litros"],
                     correct: 3,
                     explanation: "Se requieren aproximadamente 15,000 litros de agua para producir 1 kg de carne de res, considerando toda la cadena de producción."
                 },
                 {
-                    category: "Energías Renovables",
                     question: "¿Cuál es la capacidad de una planta solar de generar energía durante el día nublado?",
                     answers: [
                         "0%, no genera nada",
@@ -760,7 +732,6 @@
                     explanation: "Los paneles solares pueden generar entre 10-25% de su capacidad en días nublados, aunque con menor eficiencia que en días soleados."
                 },
                 {
-                    category: "Gestión Forestal",
                     question: "¿Qué es la reforestación?",
                     answers: [
                         "Talar árboles de manera controlada",
@@ -772,7 +743,6 @@
                     explanation: "La reforestación es el proceso de plantar árboles en áreas que anteriormente estaban cubiertas de bosques y fueron deforestadas."
                 },
                 {
-                    category: "Auditoría Ambiental",
                     question: "¿Qué evalúa una auditoría ambiental?",
                     answers: [
                         "Solo la contaminación del aire",
@@ -786,7 +756,6 @@
             ],
             hard: [
                 {
-                    category: "Legislación Ambiental",
                     question: "¿Qué establece el principio de 'quien contamina paga'?",
                     answers: [
                         "Los gobiernos deben pagar por la contaminación",
@@ -798,21 +767,18 @@
                     explanation: "Este principio establece que quien causa daño ambiental debe asumir los costos de prevención, control y reparación."
                 },
                 {
-                    category: "Cambio Climático",
                     question: "¿Cuál es el principal gas de efecto invernadero en términos de cantidad emitida?",
                     answers: ["Metano (CH4)", "Dióxido de carbono (CO2)", "Óxido nitroso (N2O)", "Ozono (O3)"],
                     correct: 1,
                     explanation: "El CO2 es el principal GEI en términos de volumen emitido, aunque el metano es más potente por molécula."
                 },
                 {
-                    category: "Economía Circular",
                     question: "¿Qué estrategia de la economía circular tiene mayor jerarquía?",
                     answers: ["Reciclar", "Reducir", "Reutilizar", "Recuperar"],
                     correct: 1,
                     explanation: "En la jerarquía de residuos, 'Reducir' tiene mayor prioridad porque previene la generación de residuos desde el origen."
                 },
                 {
-                    category: "Biodiversidad",
                     question: "¿Qué es un corredor biológico?",
                     answers: [
                         "Un camino para turistas en la naturaleza",
@@ -824,14 +790,12 @@
                     explanation: "Los corredores biológicos conectan áreas naturales fragmentadas, permitiendo el movimiento de especies y el flujo genético."
                 },
                 {
-                    category: "Consultoría Avanzada",
                     question: "¿Qué metodología evalúa el impacto ambiental de un producto durante todo su ciclo de vida?",
                     answers: ["EIA", "ACV (Análisis de Ciclo de Vida)", "ISO 14001", "Auditoría ambiental"],
                     correct: 1,
                     explanation: "El ACV evalúa los impactos ambientales desde la extracción de materias primas hasta el fin de vida del producto."
                 },
                 {
-                    category: "Gestión Hídrica",
                     question: "¿Qué es la eutrofización de cuerpos de agua?",
                     answers: [
                         "Limpieza natural del agua",
@@ -843,7 +807,6 @@
                     explanation: "La eutrofización ocurre por exceso de nutrientes (nitrógeno y fósforo) que causan crecimiento excesivo de algas, reduciendo el oxígeno."
                 },
                 {
-                    category: "Bonos de Carbono",
                     question: "¿Qué representa un bono de carbono?",
                     answers: [
                         "Un certificado de contaminación permitida",
@@ -855,14 +818,12 @@
                     explanation: "Un bono de carbono representa la reducción certificada de una tonelada de CO2 equivalente, que puede comercializarse."
                 },
                 {
-                    category: "Remediación",
                     question: "¿Qué técnica utiliza plantas para descontaminar suelos?",
                     answers: ["Biorremediación", "Fitorremediación", "Bioaumentación", "Incineración"],
                     correct: 1,
                     explanation: "La fitorremediación usa plantas para absorber, acumular o degradar contaminantes del suelo y agua."
                 },
                 {
-                    category: "Indicadores Ambientales",
                     question: "¿Qué mide el índice de calidad del aire (ICA)?",
                     answers: [
                         "Solo el CO2",
@@ -874,7 +835,6 @@
                     explanation: "El ICA mide la concentración de varios contaminantes (PM2.5, PM10, O3, CO, SO2, NO2) y su efecto en la salud."
                 },
                 {
-                    category: "Energía",
                     question: "¿Qué es el factor de emisión en gestión de GEI?",
                     answers: [
                         "La velocidad de emisión de gases",
