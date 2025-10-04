@@ -6,13 +6,16 @@
         const successMessage = document.getElementById('successMessage');
 
         // Form inputs
+        
         const nameInput = document.getElementById('name');
+        const cedulaInput = document.getElementById('cedula');
         const emailInput = document.getElementById('email');
         const phoneInput = document.getElementById('phone');
         const messageInput = document.getElementById('message');
 
         // Error elements
         const nameError = document.getElementById('nameError');
+        const cedulaError = document.getElementById('cedula');
         const emailError = document.getElementById('emailError');
         const phoneError = document.getElementById('phoneError');
         const messageError = document.getElementById('messageError');
@@ -53,6 +56,15 @@
             } else {
                 clearError(nameInput, nameError);
                 if (nameInput.value) nameInput.classList.add('success');
+            }
+        });
+
+         cedulaInput.addEventListener('blur', () => {
+            if (cedulaInput.value && !validateCedula(cedulaInput.value)) {
+                showError(cedulaInput, cedulaError, 'la cedula debe tener números');
+            } else {
+                clearError(cedulaInput, nameError);
+                if (cedulaInput.value) cedulaInput.classList.add('success');
             }
         });
 
@@ -106,6 +118,7 @@
             
             // Get form data
             const formData = {
+                cedula: cedulaInput.value.trim(),
                 name: nameInput.value.trim(),
                 email: emailInput.value.trim(),
                 phone: phoneInput.value.trim(),
