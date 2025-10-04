@@ -1,24 +1,4 @@
-<<<<<<< HEAD
-:root {
-    --primary-color: #00a86b;   /* Verde principal brillante */
-    --secondary-color: #004700; /* Verde oscuro naturaleza */
-    --accent-color: #2ecc71;    /* Verde claro fresco */
-    --text-primary: #1c1c1c;    /* Texto oscuro */
-    --text-secondary: #444;     /* Texto gris */
-    --text-light: #ffffff;      /* Texto blanco */
-    --background: linear-gradient(135deg, #00a86b, #2ecc71); /* Degradado moderno */
-    --card-bg: #ffffff;
-    --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    --shadow-sm: 0 1px 2px 0 rgba(44, 71, 65, 0.08);
-    --border-radius: 14px;
-    --border-light: #d9e2de;
-    --text-light: #5a6b63;
-    --white: #ffffff;
-}
-=======
->>>>>>> 7a263c13f28ee73fd1a36187da5427fc84f91023
-
-        /* ==== Variables de diseño ==== */
+/* ==== Variables de diseño ==== */
         :root {
             --primary-color: #00a86b;
             --secondary-color: #004700;
@@ -339,4 +319,3 @@
             position: relative;
             z-index: 1;
         }
-  
