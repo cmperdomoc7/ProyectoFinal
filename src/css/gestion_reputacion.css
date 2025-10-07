@@ -186,7 +186,7 @@
         }
 
         .service-card h2::before {
-            content: '🐞';
+            content: '📋';
             font-size: 2rem;
         }
 

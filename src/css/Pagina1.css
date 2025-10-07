@@ -595,6 +595,7 @@
             position: relative;
             overflow: hidden;
         }
+        
 
         .service-card::before {
             content: '';
