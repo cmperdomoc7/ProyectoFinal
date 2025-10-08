@@ -13,7 +13,11 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #34c4aca9 0%, #2fcc1abb 100%);
+            background-image: url("/pag/fondo.jpg"); /* Reemplaza con la ruta de tu imagen */
+            background-repeat: no-repeat; /* Para que la imagen no se repita */
+            background-size: cover; /* Para que la imagen cubra todo el fondo */
+            height: 100vh; /* Para que el fondo ocupe toda la altura de la pantalla */
+            margin: 0; /* Eliminar márgenes por defecto del body */
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -450,12 +454,23 @@
         }
     </style>
 </head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Ambiental - Misión Circular</title>
+    <style>
+        /* MANTÉN TODO EL CSS EXISTENTE TAL CUAL ESTÁ */
+        /* No lo repito aquí para ahorrar espacio, pero no cambies nada del CSS */
+    </style>
+</head>
 <body>
     <div class="game-container">
         <div class="game-header">
             <div class="game-logo">🌍</div>
-            <h1 class="game-title">ECO-CONSULTOR</h1>
-            <p class="game-subtitle">Demuestra tu conocimiento en consultoría ambiental</p>
+            <h1 class="game-title">DIAGNÓSTICO AMBIENTAL</h1>
+            <p class="game-subtitle">Evalúa el desempeño ambiental de tu empresa</p>
         </div>
 
         <div class="progress-container" id="progressContainer" style="display: none;">
@@ -463,60 +478,46 @@
                 <div class="progress-bar" id="progressBar">0%</div>
             </div>
             <div class="progress-info">
-                <span id="questionCounter">Pregunta 1 de 10</span>
-                <span id="scoreCounter">Puntuación: 0</span>
+                <span id="questionCounter">Pregunta 1 de 15</span>
+                <span id="scoreCounter">Progreso: 0%</span>
             </div>
         </div>
 
         <div class="game-content">
             <!-- Welcome Screen -->
             <div class="welcome-screen" id="welcomeScreen">
-                <div class="welcome-icon">♻️</div>
-                <h2 class="welcome-title">¡Bienvenido, Futuro Eco-Consultor!</h2>
+                <div class="welcome-icon">📊</div>
+                <h2 class="welcome-title">¡Bienvenido al Diagnóstico Ambiental!</h2>
                 <p class="welcome-text">
-                    Pon a prueba tus conocimientos sobre servicios ambientales, reciclaje, sostenibilidad y gestión ambiental. 
-                    Responde 10 preguntas y conviértete en un experto consultor.
+                    Este cuestionario te ayudará a identificar el nivel de sostenibilidad de tu empresa y 
+                    te proporcionará recomendaciones personalizadas para mejorar tu gestión ambiental.
                 </p>
-
-                <div class="difficulty-selector">
-                    <div class="difficulty-card" onclick="selectDifficulty('easy')">
-                        <div class="difficulty-icon">🌱</div>
-                        <div class="difficulty-name">Principiante</div>
-                        <div class="difficulty-desc">10 preguntas básicas</div>
-                    </div>
-                    <div class="difficulty-card selected" onclick="selectDifficulty('medium')">
-                        <div class="difficulty-icon">🌳</div>
-                        <div class="difficulty-name">Intermedio</div>
-                        <div class="difficulty-desc">10 preguntas moderadas</div>
-                    </div>
-                    <div class="difficulty-card" onclick="selectDifficulty('hard')">
-                        <div class="difficulty-icon">🏆</div>
-                        <div class="difficulty-name">Experto</div>
-                        <div class="difficulty-desc">10 preguntas avanzadas</div>
-                    </div>
-                </div>
-
-                <button class="btn" onclick="startGame()">Comenzar Evaluación</button>
+                <p class="welcome-text" style="font-size: 0.95rem; margin-top: 1rem;">
+                    ⏱️ Tiempo estimado: 5-7 minutos<br>
+                    📋 Total de preguntas: 15
+                </p>
+                <button class="btn" onclick="startSurvey()">Comenzar Diagnóstico</button>
             </div>
 
             <!-- Question Screen -->
             <div class="question-container" id="questionContainer">
                 <div class="question-header">
-                    <span class="question-category" id="questionCategory">Categoría</span>
                     <div class="question-text" id="questionText"></div>
                 </div>
 
                 <div class="answers-grid" id="answersGrid"></div>
 
-                <div class="explanation-box" id="explanationBox">
-                    <div class="explanation-title">
-                        <span id="explanationIcon">💡</span>
-                        <span id="explanationTitle">Explicación</span>
-                    </div>
-                    <div class="explanation-text" id="explanationText"></div>
+                <div style="margin-top: 2rem;" id="openAnswerContainer" style="display: none;">
+                    <textarea 
+                        id="openAnswer" 
+                        class="form-textarea" 
+                        rows="3" 
+                        placeholder="Escribe tu respuesta aquí..."
+                        style="width: 100%; padding: 1rem; border: 2px solid #e9ecef; border-radius: 12px; font-family: inherit; font-size: 1rem;"
+                    ></textarea>
                 </div>
 
-                <button class="btn" id="nextBtn" onclick="nextQuestion()" style="display: none;">
+                <button class="btn" id="nextBtn" onclick="nextQuestion()" style="margin-top: 2rem;">
                     Siguiente Pregunta
                 </button>
             </div>
@@ -524,11 +525,11 @@
             <!-- Results Screen -->
             <div class="results-screen" id="resultsScreen">
                 <div class="results-icon" id="resultsIcon">🎉</div>
-                <h2 class="results-title" id="resultsTitle">¡Evaluación Completada!</h2>
+                <h2 class="results-title" id="resultsTitle">¡Diagnóstico Completado!</h2>
 
                 <div class="score-display">
                     <div class="score-number" id="finalScore">0</div>
-                    <div class="score-label">puntos de 1000</div>
+                    <div class="score-label">puntos de sostenibilidad</div>
                 </div>
 
                 <div class="performance-level" id="performanceLevel">
@@ -538,344 +539,205 @@
 
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <div class="stat-icon">✅</div>
-                        <div class="stat-value" id="correctAnswers">0</div>
-                        <div class="stat-label">Correctas</div>
+                        <div class="stat-icon">🌱</div>
+                        <div class="stat-value" id="lowImpact">0</div>
+                        <div class="stat-label">Bajo Impacto</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon">❌</div>
-                        <div class="stat-value" id="incorrectAnswers">0</div>
-                        <div class="stat-label">Incorrectas</div>
+                        <div class="stat-icon">⚠️</div>
+                        <div class="stat-value" id="mediumImpact">0</div>
+                        <div class="stat-label">Impacto Medio</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon">⚡</div>
-                        <div class="stat-value" id="accuracyRate">0%</div>
-                        <div class="stat-label">Precisión</div>
+                        <div class="stat-icon">🔴</div>
+                        <div class="stat-value" id="highImpact">0</div>
+                        <div class="stat-label">Alto Impacto</div>
                     </div>
                 </div>
 
                 <div class="action-buttons">
-                    <button class="btn" onclick="restartGame()">Jugar de Nuevo</button>
-                    <button class="btn btn-secondary" onclick="shareResults()">Compartir Resultados</button>
+                    <button class="btn" onclick="downloadResults()">Descargar Resultados</button>
+                    <button class="btn btn-secondary" onclick="contactConsultant()">Contactar Consultor</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Game Data
-        const questions = {
-            easy: [
-                {
-                    question: "¿En qué contenedor se debe depositar una botella de plástico vacía?",
-                    answers: ["Contenedor amarillo", "Contenedor azul", "Contenedor verde", "Contenedor gris"],
-                    correct: 0,
-                    explanation: "Las botellas de plástico se depositan en el contenedor amarillo, destinado a envases de plástico, latas y briks."
-                },
-                {
-                    question: "¿Qué significa el término 'desarrollo sostenible'?",
-                    answers: [
-                        "Desarrollo rápido y económico",
-                        "Satisfacer necesidades actuales sin comprometer las futuras",
-                        "Usar todos los recursos disponibles",
-                        "Producir más con menos costo"
-                    ],
-                    correct: 1,
-                    explanation: "El desarrollo sostenible busca satisfacer las necesidades del presente sin comprometer la capacidad de las futuras generaciones de satisfacer las suyas."
-                },
-                {
-                    question: "¿Cuánto tiempo tarda aproximadamente en degradarse una botella de vidrio?",
-                    answers: ["10 años", "100 años", "1,000 años", "4,000 años"],
-                    correct: 3,
-                    explanation: "Una botella de vidrio puede tardar hasta 4,000 años en degradarse, por eso es fundamental reciclarla."
-                },
-                {
-                    question: "¿Cuál de estas es una fuente de energía renovable?",
-                    answers: ["Carbón", "Petróleo", "Energía solar", "Gas natural"],
-                    correct: 2,
-                    explanation: "La energía solar es renovable porque proviene del sol, una fuente inagotable a escala humana."
-                },
-                {
-                    question: "¿Qué porcentaje aproximado del agua del planeta es dulce y accesible?",
-                    answers: ["50%", "25%", "10%", "Menos del 1%"],
-                    correct: 3,
-                    explanation: "Solo menos del 1% del agua del planeta es dulce y está disponible para consumo humano, por eso debemos cuidarla."
-                },
-                {
-                    question: "¿Qué residuos NO se pueden reciclar en el contenedor azul?",
-                    answers: ["Periódicos", "Cajas de cartón", "Papel de cocina usado", "Revistas"],
-                    correct: 2,
-                    explanation: "El papel de cocina usado va al contenedor orgánico, ya que está contaminado y no se puede reciclar."
-                },
-                {
-                    question: "¿Qué son las especies en peligro de extinción?",
-                    answers: [
-                        "Especies que son peligrosas",
-                        "Especies con poblaciones muy reducidas",
-                        "Especies invasoras",
-                        "Especies muy antiguas"
-                    ],
-                    correct: 1,
-                    explanation: "Son especies con poblaciones tan reducidas que corren el riesgo de desaparecer completamente."
-                },
-                {
-                    question: "¿Cuál es la principal causa del cambio climático?",
-                    answers: [
-                        "Emisiones de gases de efecto invernadero",
-                        "Los volcanes",
-                        "El ciclo natural del planeta",
-                        "Los terremotos"
-                    ],
-                    correct: 0,
-                    explanation: "Las emisiones de gases de efecto invernadero por actividades humanas son la principal causa del cambio climático actual."
-                },
-                {
-                    question: "¿Qué significa 'economía circular'?",
-                    answers: [
-                        "Economía de productos circulares",
-                        "Reutilizar y reciclar para minimizar residuos",
-                        "Economía basada en el dinero",
-                        "Economía sin productos lineales"
-                    ],
-                    correct: 1,
-                    explanation: "La economía circular busca mantener productos y materiales en uso el mayor tiempo posible, minimizando residuos."
-                },
-                {
-                    question: "¿Qué es una huella de carbono?",
-                    answers: [
-                        "La marca que deja el carbón",
-                        "Medida de gases contaminantes emitidos",
-                        "El color negro del carbono",
-                        "Un tipo de combustible"
-                    ],
-                    correct: 1,
-                    explanation: "La huella de carbono mide la cantidad total de gases de efecto invernadero que genera una actividad, producto o persona."
-                }
-            ],
-            medium: [
-                {
-                    question: "¿Qué es un Estudio de Impacto Ambiental (EIA)?",
-                    answers: [
-                        "Un documento sobre el clima",
-                        "Evaluación de efectos ambientales de un proyecto",
-                        "Un estudio de la biodiversidad",
-                        "Una medición de contaminación"
-                    ],
-                    correct: 1,
-                    explanation: "El EIA evalúa los posibles impactos ambientales de un proyecto antes de su ejecución, permitiendo implementar medidas de mitigación."
-                },
-                {
-                    question: "¿Qué certifica la norma ISO 14001?",
-                    answers: [
-                        "Calidad de productos",
-                        "Sistemas de gestión ambiental",
-                        "Seguridad laboral",
-                        "Gestión de calidad"
-                    ],
-                    correct: 1,
-                    explanation: "ISO 14001 certifica que una organización tiene un sistema de gestión ambiental efectivo para minimizar su impacto negativo."
-                },
-                {
-                    question: "¿Qué porcentaje de energía se ahorra reciclando aluminio en lugar de producirlo nuevo?",
-                    answers: ["30%", "50%", "75%", "95%"],
-                    correct: 3,
-                    explanation: "Reciclar aluminio ahorra aproximadamente el 95% de la energía necesaria para producirlo desde materia prima."
-                },
-                {
-                    question: "¿Qué son los servicios ecosistémicos?",
-                    answers: [
-                        "Servicios de jardinería",
-                        "Beneficios que los ecosistemas proveen a la humanidad",
-                        "Servicios de reciclaje",
-                        "Servicios de limpieza"
-                    ],
-                    correct: 1,
-                    explanation: "Los servicios ecosistémicos son los beneficios que obtenemos de la naturaleza: agua limpia, aire puro, polinización, etc."
-                },
-                {
-                    question: "¿Qué proceso elimina contaminantes del agua residual?",
-                    answers: [
-                        "Filtración simple",
-                        "Tratamiento primario, secundario y terciario",
-                        "Hervir el agua",
-                        "Agregar cloro únicamente"
-                    ],
-                    correct: 1,
-                    explanation: "El tratamiento de aguas residuales incluye etapas primarias (física), secundarias (biológica) y terciarias (desinfección) para eliminar contaminantes."
-                },
-                {
-                    question: "¿Qué documento se requiere para aprovechar recursos naturales renovables?",
-                    answers: [
-                        "Licencia de construcción",
-                        "Concesión o permiso ambiental",
-                        "Registro mercantil",
-                        "Certificado de calidad"
-                    ],
-                    correct: 1,
-                    explanation: "Se requiere una concesión o permiso ambiental otorgado por la autoridad competente para aprovechar legalmente recursos naturales."
-                },
-                {
-                    question: "¿Cuántos litros de agua aproximadamente se necesitan para producir 1 kg de carne de res?",
-                    answers: ["500 litros", "1,500 litros", "5,000 litros", "15,000 litros"],
-                    correct: 3,
-                    explanation: "Se requieren aproximadamente 15,000 litros de agua para producir 1 kg de carne de res, considerando toda la cadena de producción."
-                },
-                {
-                    question: "¿Cuál es la capacidad de una planta solar de generar energía durante el día nublado?",
-                    answers: [
-                        "0%, no genera nada",
-                        "10-25% de su capacidad",
-                        "50% de su capacidad",
-                        "100%, igual que en días soleados"
-                    ],
-                    correct: 1,
-                    explanation: "Los paneles solares pueden generar entre 10-25% de su capacidad en días nublados, aunque con menor eficiencia que en días soleados."
-                },
-                {
-                    question: "¿Qué es la reforestación?",
-                    answers: [
-                        "Talar árboles de manera controlada",
-                        "Plantar árboles en áreas deforestadas",
-                        "Proteger bosques naturales",
-                        "Crear parques urbanos"
-                    ],
-                    correct: 1,
-                    explanation: "La reforestación es el proceso de plantar árboles en áreas que anteriormente estaban cubiertas de bosques y fueron deforestadas."
-                },
-                {
-                    question: "¿Qué evalúa una auditoría ambiental?",
-                    answers: [
-                        "Solo la contaminación del aire",
-                        "El cumplimiento de normativas y desempeño ambiental",
-                        "La calidad de productos",
-                        "Las ventas de la empresa"
-                    ],
-                    correct: 1,
-                    explanation: "Una auditoría ambiental evalúa el cumplimiento normativo y el desempeño ambiental global de una organización."
-                }
-            ],
-            hard: [
-                {
-                    question: "¿Qué establece el principio de 'quien contamina paga'?",
-                    answers: [
-                        "Los gobiernos deben pagar por la contaminación",
-                        "El responsable debe asumir los costos ambientales",
-                        "Se debe multar a todos los contaminadores",
-                        "La sociedad paga por la contaminación"
-                    ],
-                    correct: 1,
-                    explanation: "Este principio establece que quien causa daño ambiental debe asumir los costos de prevención, control y reparación."
-                },
-                {
-                    question: "¿Cuál es el principal gas de efecto invernadero en términos de cantidad emitida?",
-                    answers: ["Metano (CH4)", "Dióxido de carbono (CO2)", "Óxido nitroso (N2O)", "Ozono (O3)"],
-                    correct: 1,
-                    explanation: "El CO2 es el principal GEI en términos de volumen emitido, aunque el metano es más potente por molécula."
-                },
-                {
-                    question: "¿Qué estrategia de la economía circular tiene mayor jerarquía?",
-                    answers: ["Reciclar", "Reducir", "Reutilizar", "Recuperar"],
-                    correct: 1,
-                    explanation: "En la jerarquía de residuos, 'Reducir' tiene mayor prioridad porque previene la generación de residuos desde el origen."
-                },
-                {
-                    question: "¿Qué es un corredor biológico?",
-                    answers: [
-                        "Un camino para turistas en la naturaleza",
-                        "Una ruta migratoria de aves",
-                        "Área que conecta hábitats fragmentados",
-                        "Un zoológico natural"
-                    ],
-                    correct: 2,
-                    explanation: "Los corredores biológicos conectan áreas naturales fragmentadas, permitiendo el movimiento de especies y el flujo genético."
-                },
-                {
-                    question: "¿Qué metodología evalúa el impacto ambiental de un producto durante todo su ciclo de vida?",
-                    answers: ["EIA", "ACV (Análisis de Ciclo de Vida)", "ISO 14001", "Auditoría ambiental"],
-                    correct: 1,
-                    explanation: "El ACV evalúa los impactos ambientales desde la extracción de materias primas hasta el fin de vida del producto."
-                },
-                {
-                    question: "¿Qué es la eutrofización de cuerpos de agua?",
-                    answers: [
-                        "Limpieza natural del agua",
-                        "Exceso de nutrientes que causa proliferación de algas",
-                        "Congelamiento del agua",
-                        "Aumento de la salinidad"
-                    ],
-                    correct: 1,
-                    explanation: "La eutrofización ocurre por exceso de nutrientes (nitrógeno y fósforo) que causan crecimiento excesivo de algas, reduciendo el oxígeno."
-                },
-                {
-                    question: "¿Qué representa un bono de carbono?",
-                    answers: [
-                        "Un certificado de contaminación permitida",
-                        "Una tonelada de CO2 equivalente reducida",
-                        "Un permiso para talar árboles",
-                        "Un subsidio gubernamental"
-                    ],
-                    correct: 1,
-                    explanation: "Un bono de carbono representa la reducción certificada de una tonelada de CO2 equivalente, que puede comercializarse."
-                },
-                {
-                    question: "¿Qué técnica utiliza plantas para descontaminar suelos?",
-                    answers: ["Biorremediación", "Fitorremediación", "Bioaumentación", "Incineración"],
-                    correct: 1,
-                    explanation: "La fitorremediación usa plantas para absorber, acumular o degradar contaminantes del suelo y agua."
-                },
-                {
-                    question: "¿Qué mide el índice de calidad del aire (ICA)?",
-                    answers: [
-                        "Solo el CO2",
-                        "Concentración de múltiples contaminantes atmosféricos",
-                        "La temperatura del aire",
-                        "La humedad relativa"
-                    ],
-                    correct: 1,
-                    explanation: "El ICA mide la concentración de varios contaminantes (PM2.5, PM10, O3, CO, SO2, NO2) y su efecto en la salud."
-                },
-                {
-                    question: "¿Qué es el factor de emisión en gestión de GEI?",
-                    answers: [
-                        "La velocidad de emisión de gases",
-                        "La cantidad de GEI emitida por unidad de actividad",
-                        "El tiempo de permanencia del gas",
-                        "La temperatura de emisión"
-                    ],
-                    correct: 1,
-                    explanation: "El factor de emisión indica cuánto GEI se emite por unidad de actividad (ej: kg CO2/kWh), esencial para inventarios de emisiones."
-                }
-            ]
-        };
+        // Survey Questions Data
+        const surveyQuestions = [
+            {
+                section: "Información General",
+                question: "¿Cuál es el nombre de tu empresa?",
+                type: "text",
+                required: true
+            },
+            {
+                section: "Información General",
+                question: "¿A qué sector pertenece tu empresa?",
+                type: "single",
+                options: [
+                    { text: "Industria / Manufactura", points: 0 },
+                    { text: "Comercio / Servicios", points: 0 },
+                    { text: "Agroindustria", points: 0 },
+                    { text: "Construcción / Inmobiliario", points: 0 },
+                    { text: "Tecnología / Innovación", points: 0 },
+                    { text: "Otro", points: 0 }
+                ]
+            },
+            {
+                section: "Información General",
+                question: "Tamaño de empresa:",
+                type: "single",
+                options: [
+                    { text: "Microempresa (1-10 empleados)", points: 0 },
+                    { text: "Pequeña (11-50 empleados)", points: 0 },
+                    { text: "Mediana (51-200 empleados)", points: 0 },
+                    { text: "Grande (+200 empleados)", points: 0 }
+                ]
+            },
+            {
+                section: "Información General",
+                question: "¿En qué ciudad o región se encuentra tu empresa?",
+                type: "text",
+                required: true
+            },
+            {
+                section: "Consumo y Recursos",
+                question: "¿Cómo gestionas el consumo de energía?",
+                type: "single",
+                options: [
+                    { text: "Medimos y controlamos nuestro consumo, usamos energías renovables o eficientes", points: 30 },
+                    { text: "Tenemos control básico del consumo, pero sin medidas de eficiencia", points: 15 },
+                    { text: "No medimos ni controlamos el consumo de energía", points: 0 }
+                ]
+            },
+            {
+                section: "Consumo y Recursos",
+                question: "¿Cómo gestionas el consumo de agua?",
+                type: "single",
+                options: [
+                    { text: "Medimos, reutilizamos y tenemos sistemas de ahorro implementados", points: 30 },
+                    { text: "Tenemos algunas medidas de ahorro, pero sin medición formal", points: 15 },
+                    { text: "No tenemos control sobre el consumo de agua", points: 0 }
+                ]
+            },
+            {
+                section: "Gestión de Residuos",
+                question: "¿Tu empresa tiene un programa de gestión de residuos?",
+                type: "single",
+                options: [
+                    { text: "Sí, separamos, reciclamos y compostamos de manera sistemática", points: 30 },
+                    { text: "Separamos algunos residuos básicos (papel, plástico)", points: 15 },
+                    { text: "No tenemos programa de gestión de residuos", points: 0 }
+                ]
+            },
+            {
+                section: "Gestión de Residuos",
+                question: "¿Qué porcentaje aproximado de tus residuos se recicla o reutiliza?",
+                type: "single",
+                options: [
+                    { text: "Más del 70%", points: 30 },
+                    { text: "Entre 30% y 70%", points: 20 },
+                    { text: "Menos del 30%", points: 10 },
+                    { text: "No sé / No aplica", points: 0 }
+                ]
+            },
+            {
+                section: "Emisiones y Huella Ambiental",
+                question: "¿Tu empresa mide su huella de carbono?",
+                type: "single",
+                options: [
+                    { text: "Sí, la medimos anualmente y tenemos plan de reducción", points: 30 },
+                    { text: "La hemos medido alguna vez, pero no regularmente", points: 15 },
+                    { text: "No la hemos medido nunca", points: 0 }
+                ]
+            },
+            {
+                section: "Emisiones y Huella Ambiental",
+                question: "¿Qué tipo de transporte utiliza principalmente tu empresa?",
+                type: "single",
+                options: [
+                    { text: "Vehículos eléctricos o híbridos / Transporte público", points: 25 },
+                    { text: "Vehículos de combustión con mantenimiento regular", points: 10 },
+                    { text: "Vehículos antiguos sin control de emisiones", points: 0 }
+                ]
+            },
+            {
+                section: "Cumplimiento Normativo",
+                question: "¿Tu empresa cumple con las normativas ambientales vigentes?",
+                type: "single",
+                options: [
+                    { text: "Sí, tenemos todos los permisos y licencias al día", points: 30 },
+                    { text: "Cumplimos parcialmente", points: 15 },
+                    { text: "No estamos seguros / No cumplimos", points: 0 }
+                ]
+            },
+            {
+                section: "Cadena de Suministro",
+                question: "¿Evalúas criterios ambientales al seleccionar proveedores?",
+                type: "single",
+                options: [
+                    { text: "Sí, es un criterio fundamental en nuestras decisiones", points: 25 },
+                    { text: "Lo consideramos, pero no es determinante", points: 12 },
+                    { text: "No evaluamos criterios ambientales", points: 0 }
+                ]
+            },
+            {
+                section: "Cultura Organizacional",
+                question: "¿Tu empresa tiene programas de capacitación ambiental para empleados?",
+                type: "single",
+                options: [
+                    { text: "Sí, capacitamos regularmente a todo el personal", points: 20 },
+                    { text: "Hemos hecho algunas capacitaciones puntuales", points: 10 },
+                    { text: "No tenemos programas de capacitación ambiental", points: 0 }
+                ]
+            },
+            {
+                section: "Certificaciones",
+                question: "¿Tu empresa cuenta con certificaciones ambientales?",
+                type: "single",
+                options: [
+                    { text: "Sí (ISO 14001, LEED, u otras)", points: 30 },
+                    { text: "Estamos en proceso de certificación", points: 15 },
+                    { text: "No tenemos certificaciones", points: 0 }
+                ]
+            },
+            {
+                section: "Objetivos Futuros",
+                question: "¿Cuáles son los principales desafíos ambientales que enfrenta tu empresa?",
+                type: "text",
+                required: false,
+                placeholder: "Describe brevemente tus desafíos ambientales..."
+            }
+        ];
 
-        // Game State
-        let gameState = {
-            difficulty: 'medium',
+        // Survey State
+        let surveyState = {
             currentQuestion: 0,
-            score: 0,
-            correctAnswers: 0,
-            incorrectAnswers: 0,
-            selectedAnswer: null,
-            answered: false,
-            questions: []
+            answers: [],
+            totalScore: 0,
+            maxScore: 0,
+            lowImpactCount: 0,
+            mediumImpactCount: 0,
+            highImpactCount: 0
         };
 
-        // Initialize
-        function selectDifficulty(level) {
-            gameState.difficulty = level;
-            document.querySelectorAll('.difficulty-card').forEach(card => {
-                card.classList.remove('selected');
-            });
-            event.target.closest('.difficulty-card').classList.add('selected');
-        }
+        // Calculate max score
+        surveyQuestions.forEach(q => {
+            if (q.type === 'single' && q.options) {
+                const maxPoints = Math.max(...q.options.map(opt => opt.points || 0));
+                surveyState.maxScore += maxPoints;
+            }
+        });
 
-        function startGame() {
-            // Shuffle questions
-            gameState.questions = [...questions[gameState.difficulty]].sort(() => Math.random() - 0.5);
-            gameState.currentQuestion = 0;
-            gameState.score = 0;
-            gameState.correctAnswers = 0;
-            gameState.incorrectAnswers = 0;
+        function startSurvey() {
+            surveyState.currentQuestion = 0;
+            surveyState.answers = [];
+            surveyState.totalScore = 0;
+            surveyState.lowImpactCount = 0;
+            surveyState.mediumImpactCount = 0;
+            surveyState.highImpactCount = 0;
 
             document.getElementById('welcomeScreen').style.display = 'none';
             document.getElementById('progressContainer').style.display = 'block';
@@ -885,93 +747,101 @@
         }
 
         function loadQuestion() {
-            const question = gameState.questions[gameState.currentQuestion];
-            gameState.answered = false;
-            gameState.selectedAnswer = null;
-
-            document.getElementById('questionCategory').textContent = question.category;
-            document.getElementById('questionText').textContent = question.question;
+            const question = surveyQuestions[surveyState.currentQuestion];
+            const questionText = document.getElementById('questionText');
+            const answersGrid = document.getElementById('answersGrid');
+            const openAnswerContainer = document.getElementById('openAnswerContainer');
+            const openAnswer = document.getElementById('openAnswer');
 
             // Update progress
-            const progress = ((gameState.currentQuestion + 1) / gameState.questions.length) * 100;
+            const progress = ((surveyState.currentQuestion + 1) / surveyQuestions.length) * 100;
             document.getElementById('progressBar').style.width = progress + '%';
             document.getElementById('progressBar').textContent = Math.round(progress) + '%';
-            document.getElementById('questionCounter').textContent = `Pregunta ${gameState.currentQuestion + 1} de ${gameState.questions.length}`;
-            document.getElementById('scoreCounter').textContent = `Puntuación: ${gameState.score}`;
+            document.getElementById('questionCounter').textContent = `Pregunta ${surveyState.currentQuestion + 1} de ${surveyQuestions.length}`;
+            document.getElementById('scoreCounter').textContent = `Sección: ${question.section}`;
 
-            // Load answers
-            const answersGrid = document.getElementById('answersGrid');
+            // Set question text
+            questionText.innerHTML = `<strong>${question.section}</strong><br>${question.question}`;
+
+            // Clear previous answers
             answersGrid.innerHTML = '';
+            openAnswerContainer.style.display = 'none';
+            openAnswer.value = '';
 
-            const letters = ['A', 'B', 'C', 'D'];
-            question.answers.forEach((answer, index) => {
-                const answerDiv = document.createElement('div');
-                answerDiv.className = 'answer-option';
-                answerDiv.onclick = () => selectAnswer(index);
+            if (question.type === 'single') {
+                // Multiple choice question
+                answersGrid.style.display = 'grid';
+                const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+                
+                question.options.forEach((option, index) => {
+                    const answerDiv = document.createElement('div');
+                    answerDiv.className = 'answer-option';
+                    answerDiv.onclick = () => selectAnswer(index);
+                    answerDiv.dataset.index = index;
 
-                answerDiv.innerHTML = `
-                    <div class="answer-letter">${letters[index]}</div>
-                    <div class="answer-text">${answer}</div>
-                `;
+                    answerDiv.innerHTML = `
+                        <div class="answer-letter">${letters[index]}</div>
+                        <div class="answer-text">${option.text}</div>
+                    `;
 
-                answersGrid.appendChild(answerDiv);
-            });
-
-            document.getElementById('explanationBox').classList.remove('show');
-            document.getElementById('nextBtn').style.display = 'none';
+                    answersGrid.appendChild(answerDiv);
+                });
+            } else if (question.type === 'text') {
+                // Open text question
+                answersGrid.style.display = 'none';
+                openAnswerContainer.style.display = 'block';
+                openAnswer.placeholder = question.placeholder || 'Escribe tu respuesta aquí...';
+            }
         }
 
         function selectAnswer(index) {
-            if (gameState.answered) return;
+            // Remove previous selection
+            document.querySelectorAll('.answer-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
 
-            const question = gameState.questions[gameState.currentQuestion];
-            gameState.selectedAnswer = index;
-            gameState.answered = true;
-
-            const answerOptions = document.querySelectorAll('.answer-option');
-            answerOptions.forEach(option => option.classList.add('disabled'));
-
-            if (index === question.correct) {
-                // Correct answer
-                answerOptions[index].classList.add('correct');
-                gameState.correctAnswers++;
-                
-                // Calculate score based on difficulty
-                let points = 0;
-                if (gameState.difficulty === 'easy') points = 80;
-                else if (gameState.difficulty === 'medium') points = 100;
-                else points = 120;
-                
-                gameState.score += points;
-
-                document.getElementById('explanationIcon').textContent = '✅';
-                document.getElementById('explanationTitle').textContent = '¡Correcto!';
-                document.getElementById('explanationBox').style.background = '#e6ffed';
-                document.getElementById('explanationBox').style.borderLeftColor = '#48bb78';
-                document.getElementById('explanationText').style.color = '#2d5f3f';
-            } else {
-                // Incorrect answer
-                answerOptions[index].classList.add('incorrect');
-                answerOptions[question.correct].classList.add('correct');
-                gameState.incorrectAnswers++;
-
-                document.getElementById('explanationIcon').textContent = '❌';
-                document.getElementById('explanationTitle').textContent = 'Incorrecto';
-                document.getElementById('explanationBox').style.background = '#fff5f5';
-                document.getElementById('explanationBox').style.borderLeftColor = '#e74c3c';
-                document.getElementById('explanationText').style.color = '#c0392b';
+            // Add selection to clicked option
+            const selectedOption = document.querySelector(`.answer-option[data-index="${index}"]`);
+            if (selectedOption) {
+                selectedOption.classList.add('selected');
             }
 
-            document.getElementById('explanationText').textContent = question.explanation;
-            document.getElementById('explanationBox').classList.add('show');
-            document.getElementById('nextBtn').style.display = 'block';
-            document.getElementById('scoreCounter').textContent = `Puntuación: ${gameState.score}`;
+            surveyState.answers[surveyState.currentQuestion] = index;
         }
 
         function nextQuestion() {
-            gameState.currentQuestion++;
+            const question = surveyQuestions[surveyState.currentQuestion];
+            let answer;
 
-            if (gameState.currentQuestion < gameState.questions.length) {
+            if (question.type === 'single') {
+                answer = surveyState.answers[surveyState.currentQuestion];
+                if (answer === undefined) {
+                    alert('Por favor selecciona una respuesta antes de continuar.');
+                    return;
+                }
+                
+                // Add points
+                const selectedOption = question.options[answer];
+                const points = selectedOption.points || 0;
+                surveyState.totalScore += points;
+
+                // Categorize impact
+                if (points >= 25) surveyState.lowImpactCount++;
+                else if (points >= 10) surveyState.mediumImpactCount++;
+                else surveyState.highImpactCount++;
+
+            } else if (question.type === 'text') {
+                answer = document.getElementById('openAnswer').value.trim();
+                if (question.required && !answer) {
+                    alert('Por favor completa este campo antes de continuar.');
+                    return;
+                }
+                surveyState.answers[surveyState.currentQuestion] = answer;
+            }
+
+            surveyState.currentQuestion++;
+
+            if (surveyState.currentQuestion < surveyQuestions.length) {
                 loadQuestion();
             } else {
                 showResults();
@@ -982,35 +852,32 @@
             document.getElementById('questionContainer').classList.remove('active');
             document.getElementById('resultsScreen').classList.add('active');
 
-            const totalQuestions = gameState.questions.length;
-            const accuracy = Math.round((gameState.correctAnswers / totalQuestions) * 100);
+            const percentage = Math.round((surveyState.totalScore / surveyState.maxScore) * 100);
 
-            document.getElementById('finalScore').textContent = gameState.score;
-            document.getElementById('correctAnswers').textContent = gameState.correctAnswers;
-            document.getElementById('incorrectAnswers').textContent = gameState.incorrectAnswers;
-            document.getElementById('accuracyRate').textContent = accuracy + '%';
+            document.getElementById('finalScore').textContent = surveyState.totalScore;
+            document.getElementById('lowImpact').textContent = surveyState.lowImpactCount;
+            document.getElementById('mediumImpact').textContent = surveyState.mediumImpactCount;
+            document.getElementById('highImpact').textContent = surveyState.highImpactCount;
 
             // Determine performance level
-            let icon = '';
-            let title = '';
-            let message = '';
+            let icon, title, message;
 
-            if (accuracy >= 90) {
+            if (percentage >= 80) {
                 icon = '🏆';
-                title = 'Consultor Experto';
-                message = '¡Excepcional! Tienes un conocimiento sobresaliente en servicios ambientales. Estás listo para liderar proyectos de consultoría ambiental de alto nivel.';
-            } else if (accuracy >= 70) {
+                title = 'Excelente Gestión Ambiental';
+                message = 'Tu empresa demuestra un alto compromiso con la sostenibilidad. Continúa con estas prácticas y considera obtener certificaciones internacionales.';
+            } else if (percentage >= 60) {
                 icon = '🌟';
-                title = 'Consultor Competente';
-                message = '¡Muy bien! Demuestras sólidos conocimientos en gestión ambiental. Con un poco más de estudio, podrás convertirte en un experto.';
-            } else if (accuracy >= 50) {
+                title = 'Buena Gestión Ambiental';
+                message = 'Tu empresa tiene bases sólidas en sostenibilidad, pero hay áreas de mejora. Te recomendamos implementar medidas adicionales de eficiencia.';
+            } else if (percentage >= 40) {
                 icon = '📚';
-                title = 'Consultor en Desarrollo';
-                message = 'Buen trabajo, tienes bases importantes. Te recomendamos profundizar en las áreas donde tuviste dificultades para mejorar tu expertise.';
+                title = 'Gestión Ambiental en Desarrollo';
+                message = 'Tu empresa está iniciando su camino hacia la sostenibilidad. Es importante priorizar acciones concretas en las áreas críticas identificadas.';
             } else {
                 icon = '🌱';
-                title = 'Consultor Principiante';
-                message = 'Estás comenzando tu camino. No te desanimes, la consultoría ambiental requiere estudio constante. ¡Sigue aprendiendo!';
+                title = 'Oportunidad de Mejora';
+                message = 'Tu empresa tiene un gran potencial de mejora en gestión ambiental. Te recomendamos comenzar con una consultoría especializada.';
             }
 
             document.getElementById('resultsIcon').textContent = icon;
@@ -1018,53 +885,59 @@
             document.getElementById('performanceMessage').textContent = message;
         }
 
-        function restartGame() {
-            document.getElementById('resultsScreen').classList.remove('active');
-            document.getElementById('welcomeScreen').style.display = 'block';
-            document.getElementById('progressContainer').style.display = 'none';
-            
-            gameState = {
-                difficulty: 'medium',
-                currentQuestion: 0,
-                score: 0,
-                correctAnswers: 0,
-                incorrectAnswers: 0,
-                selectedAnswer: null,
-                answered: false,
-                questions: []
-            };
+        function downloadResults() {
+            const resultsText = `
+DIAGNÓSTICO AMBIENTAL - MISIÓN CIRCULAR
+=======================================
+
+Empresa: ${surveyState.answers[0] || 'N/A'}
+Puntuación: ${surveyState.totalScore} / ${surveyState.maxScore} (${Math.round((surveyState.totalScore / surveyState.maxScore) * 100)}%)
+
+Áreas con bajo impacto: ${surveyState.lowImpactCount}
+Áreas con impacto medio: ${surveyState.mediumImpactCount}
+Áreas con alto impacto: ${surveyState.highImpactCount}
+
+Nivel: ${document.getElementById('performanceTitle').textContent}
+Recomendación: ${document.getElementById('performanceMessage').textContent}
+
+Para más información, contacta a Misión Circular:
+Email: misioncircular@gmail.com
+            `.trim();
+
+            const blob = new Blob([resultsText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `diagnostico-ambiental-${Date.now()}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            alert('✅ Resultados descargados correctamente');
         }
 
-        function shareResults() {
-            const accuracy = Math.round((gameState.correctAnswers / gameState.questions.length) * 100);
-            const text = `¡Obtuve ${gameState.score} puntos con ${accuracy}% de precisión en Eco-Consultor de Misión Circular! 🌍♻️ ¿Puedes superarme?`;
-            
-            if (navigator.share) {
-                navigator.share({
-                    title: 'Eco-Consultor',
-                    text: text
-                }).catch(err => console.log('Error sharing:', err));
-            } else {
-                // Fallback: copy to clipboard
-                navigator.clipboard.writeText(text).then(() => {
-                    alert('✅ Resultados copiados al portapapeles. ¡Compártelos en tus redes sociales!');
-                }).catch(() => {
-                    alert(text);
-                });
-            }
+        function contactConsultant() {
+            const message = `Hola, he completado el diagnóstico ambiental y obtuve ${surveyState.totalScore} puntos. Me gustaría recibir asesoría personalizada.`;
+            const whatsappURL = `https://wa.me/573162314393?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
         }
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            if (document.getElementById('questionContainer').classList.contains('active') && !gameState.answered) {
-                if (e.key === '1' || e.key === 'a') selectAnswer(0);
-                else if (e.key === '2' || e.key === 'b') selectAnswer(1);
-                else if (e.key === '3' || e.key === 'c') selectAnswer(2);
-                else if (e.key === '4' || e.key === 'd') selectAnswer(3);
-            }
-            
-            if (e.key === 'Enter' && document.getElementById('nextBtn').style.display === 'block') {
-                nextQuestion();
+            if (document.getElementById('questionContainer').classList.contains('active')) {
+                const question = surveyQuestions[surveyState.currentQuestion];
+                
+                if (question.type === 'single') {
+                    if (e.key >= '1' && e.key <= '6') {
+                        const index = parseInt(e.key) - 1;
+                        if (question.options && question.options[index]) {
+                            selectAnswer(index);
+                        }
+                    }
+                }
+                
+                if (e.key === 'Enter' && e.ctrlKey) {
+                    nextQuestion();
+                }
             }
         });
     </script>
