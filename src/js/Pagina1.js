@@ -7,6 +7,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const submitBtn = document.getElementById('submitBtn');
     const successMessage = document.getElementById('successMessage');
 
+<<<<<<< HEAD:js/Pagina1.js
+        // Form inputs
+        
+        const nameInput = document.getElementById('name');
+        const cedulaInput = document.getElementById('cedula');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const messageInput = document.getElementById('message');
+
+        // Error elements
+        const nameError = document.getElementById('nameError');
+        const cedulaError = document.getElementById('cedula');
+        const emailError = document.getElementById('emailError');
+        const phoneError = document.getElementById('phoneError');
+        const messageError = document.getElementById('messageError');
+=======
     // Form inputs - CORREGIDO: usar los IDs correctos del HTML
     const nameInput = document.getElementById('nameInput');
     const cedulaInput = document.getElementById('cedulaInput');
@@ -20,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const emailError = document.getElementById('emailError');
     const phoneError = document.getElementById('phoneError');
     const messageError = document.getElementById('messageError');
+>>>>>>> 43f54715ba20d4d9a399ae1f03ce0c8a738a8b5e:src/js/Pagina1.js
 
 
     // Close menu when clicking on links
@@ -74,6 +91,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+<<<<<<< HEAD:js/Pagina1.js
+         cedulaInput.addEventListener('blur', () => {
+            if (cedulaInput.value && !validateCedula(cedulaInput.value)) {
+                showError(cedulaInput, cedulaError, 'la cedula debe tener números');
+            } else {
+                clearError(cedulaInput, nameError);
+                if (cedulaInput.value) cedulaInput.classList.add('success');
+            }
+        });
+
+=======
     if (cedulaInput) {
         cedulaInput.addEventListener('blur', () => {
             if (cedulaInput.value && !validateCedula(cedulaInput.value)) {
@@ -86,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (emailInput) {
+>>>>>>> 43f54715ba20d4d9a399ae1f03ce0c8a738a8b5e:src/js/Pagina1.js
         emailInput.addEventListener('blur', () => {
             if (emailInput.value && !validateEmail(emailInput.value)) {
                 showError(emailInput, emailError, 'Ingresa un email válido');
