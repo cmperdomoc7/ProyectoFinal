@@ -2,6 +2,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            
         }
 
         :root {
@@ -48,6 +49,7 @@
             line-height: 1.6;
             color: var(--text-dark);
             background: var(--white);
+            
         }
 
         /* Header moderno */
@@ -566,13 +568,14 @@
         .section-title {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #2d3748;
+            color: #2fcc1a;
+
             margin-bottom: 1rem;
         }
 
         .section-subtitle {
             font-size: 1.1rem;
-            color: #718096;
+            color: #000801;
             max-width: 600px;
             margin: 0 auto;
         }
@@ -585,7 +588,7 @@
         }
 
         .service-card {
-            background: white;
+            background: url(/pag/fondo2.jpg);
             padding: 2rem;
             border-radius: 16px;
             text-align: center;
@@ -594,6 +597,7 @@
             border: 1px solid #e2e8f0;
             position: relative;
             overflow: hidden;
+            opacity: 0.1;
         }
         
 
@@ -675,7 +679,7 @@
         .service-title {
             font-size: 1.25rem;
             font-weight: 600;
-            color: #2d3748;
+            color: #ffffff;
             margin-bottom: 1rem;
             position: relative;
             z-index: 2;
@@ -689,7 +693,7 @@
         }
 
         .service-description {
-            color: #718096;
+            color: #053101;
             font-size: 0.95rem;
             line-height: 1.6;
             position: relative;
