@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educación y Cultura Ambiental</title>
+    <link rel="stylesheet" href="/src/css/gestion_recursos.css">
+</head>
+
+<body>
+    <!-- Header (NO se modifica) -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#"><img src="logo.png" alt="MISIÓN CIRCULAR" class="logo"></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="Pagina1.html#cabeza" class="nav-link">Inicio</a></li>
+                <li><a href="Nosotros.html" class="nav-link">Nosotros</a></li>
+                <li><a href="juego.html" class="nav-link">Quezz</a></li>
+                <li><a href="Pagina1.html#contactForm" class="nav-link contact-btn">CONTACTO</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido Informativo -->
+    <main class="contenido">
+        <section id="servicios">
+            <!-- Sección: Programas de formación -->
+            <div class="service-card">
+                <h2>Programas de Formación</h2>
+                <ul>
+                    <li>
+                        <strong>Capacitaciones ambientales:</strong> Diseño e implementación de programas de formación para
+                        empresas, instituciones educativas, entidades públicas y comunidades.
+                    </li>
+                    <li>
+                        <strong>Temáticas especializadas:</strong> Cambio climático, gestión de residuos, recurso hídrico,
+                        sostenibilidad corporativa, riesgo químico y economía circular.
+                    </li>
+                    <li>
+                        <strong>Modalidades flexibles:</strong> Talleres presenciales, virtuales o híbridos con metodologías
+                        activas y prácticas.
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sección: Estrategias pedagógicas -->
+            <div class="service-card">
+                <h2>Estrategias Pedagógicas</h2>
+                <ul>
+                    <li>
+                        <strong>Campañas ambientales:</strong> Conceptualización, diseño e implementación de campañas
+                        educativas adaptadas a la cultura organizacional o comunitaria.
+                    </li>
+                    <li>
+                        <strong>Comunicación ambiental:</strong> Elaboración de guías, cartillas, infografías y contenidos
+                        digitales para sensibilización.
+                    </li>
+                    <li>
+                        <strong>Cumplimiento normativo con comunicación:</strong> Desarrollo de piezas de socialización para
+                        planes y compromisos ambientales (PGIRS, PSMV, huella de carbono, entre otros).
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Sección: Cultura organizacional y comunitaria -->
+            <div class="service-card">
+                <h2>Cultura Organizacional y Comunitaria</h2>
+                <ul>
+                    <li>
+                        <strong>Sensibilización en sostenibilidad:</strong> Actividades participativas para fortalecer el
+                        compromiso ambiental dentro de las organizaciones.
+                    </li>
+                    <li>
+                        <strong>Eventos y actividades de promoción:</strong> Charlas, talleres y ferias ambientales que
+                        conectan a los equipos con la sostenibilidad.
+                    </li>
+                    <li>
+                        <strong>Fortalecimiento de comunidades:</strong> Proyectos de educación ambiental que generan impacto
+                        social y ambiental a largo plazo.
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Menú móvil
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
