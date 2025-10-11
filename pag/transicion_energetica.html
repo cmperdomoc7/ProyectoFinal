@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico y Planeación Energética</title>
+    <link rel="stylesheet" href="/src/css/transicion_energetica.css">
+</head>
+<body>
+    <!-- Header (NO se modifica) -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#"><img src="logo.png" alt="MISIÓN CIRCULAR" class="logo"></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="Pagina1.html#cabeza" class="nav-link">Inicio</a></li>
+                <li><a href="Nosotros.html" class="nav-link">Nosotros</a></li>
+                <li><a href="juego.html" class="nav-link">Quezz</a></li>
+                <li><a href="Pagina1.html#contactForm" class="nav-link contact-btn">CONTACTO</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido Informativo -->
+    <main class="contenido">
+        <section id="diagnostico_energetico">
+            <div class="service-card">
+                <h2>Diagnóstico y Planeación Energética</h2>
+                <ul>
+                    <li>
+                        <strong>Diagnóstico energético:</strong>
+                        Análisis de consumos, usos significativos y línea base energética.
+                    </li>
+                    <li>
+                        <strong>Auditorías energéticas (ISO 50002):</strong>
+                        Estimación de ahorros potenciales, priorización de medidas y análisis costo–beneficio.
+                    </li>
+                    <li>
+                        <strong>Planes de eficiencia energética (PEE):</strong>
+                        Diseño de estrategias para reducir consumos y costos con metas e indicadores claros.
+                    </li>
+                    <li>
+                        <strong>Análisis normativo y cumplimiento:</strong>
+                        Revisión de obligaciones legales y recomendaciones para garantizar conformidad.
+                    </li>
+                    <li>
+                        <strong>Acompañamiento en implementación de renovables:</strong>
+                        Procesos de adquisición, permisos, instalación y puesta en marcha.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h2>Implementación y Operación</h2>
+                <ul>
+                    <li>
+                        <strong>Medidas de eficiencia energética:</strong>
+                        Inventario de equipos de alto consumo, sistemas de medición y planes de reducción de pérdidas.
+                    </li>
+                    <li>
+                        <strong>Sistemas de gestión de la energía (ISO 50001):</strong>
+                        Desarrollo documental, acompañamiento en auditoría interna y preparación para certificación.
+                    </li>
+                    <li>
+                        <strong>Monitoreo, medición y verificación (MMV):</strong>
+                        Indicadores clave, seguimiento periódico y reportes de desempeño energético.
+                    </li>
+                    <li>
+                        <strong>Gestión de incentivos y financiación verde:</strong>
+                        Asesoría en beneficios tributarios y convocatorias de sostenibilidad.
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Menú móvil
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Residuos Peligrosos</title>
+    <link rel="stylesheet" href="/src/css/residuos_peligrosos.css">
+</head>
+<body>
+    <!-- Header (NO se modifica) -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="#"><img src="logo.png" alt="MISIÓN CIRCULAR" class="logo"></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="Pagina1.html#cabeza" class="nav-link">Inicio</a></li>
+                <li><a href="Nosotros.html" class="nav-link">Nosotros</a></li>
+                <li><a href="juego.html" class="nav-link">Quezz</a></li>
+                <li><a href="Pagina1.html#contactForm" class="nav-link contact-btn">CONTACTO</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido Informativo -->
+    <main class="contenido">
+        <section id="residuos_peligrosos">
+            <div class="service-card">
+                <h2>Diagnóstico y Planeación</h2>
+                <ul>
+                    <li>
+                        <strong>Identificación y caracterización de residuos peligrosos:</strong>
+                        Inventario conforme a la Resolución 1362 de 2007, clasificación según listado oficial y evaluación de peligrosidad.
+                    </li>
+                    <li>
+                        <strong>Registro como generador (RUA):</strong>
+                        Inscripción, actualización anual y acompañamiento en reportes ante la autoridad ambiental.
+                    </li>
+                    <li>
+                        <strong>Planes de gestión de residuos peligrosos (PGIRP):</strong>
+                        Diseño de programas de manejo ajustados a la normatividad vigente.
+                    </li>
+                    <li>
+                        <strong>Gestión de residuos radiactivos:</strong>
+                        Identificación, caracterización y coordinación con entidades autorizadas para disposición final.
+                    </li>
+                </ul>
+            </div>
+
+            <div class="service-card">
+                <h2>Implementación y Operación</h2>
+                <ul>
+                    <li>
+                        <strong>Capacitación en manejo interno y almacenamiento temporal:</strong>
+                        Segregación en origen, zonas de almacenamiento seguras y uso de bitácoras de seguimiento.
+                    </li>
+                    <li>
+                        <strong>Seguimiento y trazabilidad:</strong>
+                        Revisión técnica y documental, indicadores de desempeño y planes de mejora.
+                    </li>
+                    <li>
+                        <strong>Acompañamiento en inspecciones y auditorías:</strong>
+                        Preparación documental, simulacros y apoyo en visitas de autoridades ambientales.
+                    </li>
+                    <li>
+                        <strong>Prevención y minimización en la fuente:</strong>
+                        Asesoría en ecoeficiencia, sustitución de insumos y reducción progresiva de residuos peligrosos.
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Menú móvil
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

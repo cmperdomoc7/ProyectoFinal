@@ -74,13 +74,9 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            text-decoration: none;
-            letter-spacing: -0.5px;
             width: 230px;
             height: 90px;
+            object-fit: contain;
         }
 
         .ig {
