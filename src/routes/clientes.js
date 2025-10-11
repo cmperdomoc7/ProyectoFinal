@@ -18,7 +18,7 @@ router.post('/submitBtn', (req, res) => {
     const { cedulaInput, nameInput, email, phone, message } = req.body;
 
     // Consulta SQL de inserción
-    const query = 'INSERT INTO cliente (cedula, nombre, email, telefono, mensaje) VALUES (?, ?, ?, ?, ?)';
+    const query = 'INSERT INTO clientes (cedula, nombre, email, telefono, mensaje) VALUES (?, ?, ?, ?, ?)';
 
     // Ejecutar la consulta SQL con los datos proporcionados
     req.connection.query(query, [cedulaInput, nameInput, email, phone, message], (err, result) => {
