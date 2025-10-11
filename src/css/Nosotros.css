@@ -258,7 +258,7 @@
         .reason-icon {
             width: 70px;
             height: 70px;
-            background: url(/pag/fondo.jpg);
+            background: url(/img/fondo.jpg);
             border-radius: 20px;
             display: flex;
             align-items: center;
@@ -378,7 +378,7 @@
         /* CTA Section */
         .cta-section {
             padding: 5rem 2rem;
-            background: url(/pag/fondo.jpg);
+            background: url(/img/fondo.jpg);
             text-align: center;
             color: white;
         }

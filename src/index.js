@@ -26,6 +26,7 @@ app.use(express.static('pag'));
 app.use('/js', express.static('src/js'));
 // Middleware para servir archivos CSS desde 'src/css' bajo la ruta '/css'.
 app.use('/css', express.static('src/css'));
+app.use('/img', express.static('src/imagenes'));
 
 // Configuración de la conexión a la base de datos MySQL.
 const connection = mysql.createConnection({
