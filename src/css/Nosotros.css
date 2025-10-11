@@ -258,7 +258,7 @@
         .reason-icon {
             width: 70px;
             height: 70px;
-            background: linear-gradient(135deg, var(--primary-color), var(--success-color));
+            background: url(/pag/fondo.jpg);
             border-radius: 20px;
             display: flex;
             align-items: center;
@@ -378,7 +378,7 @@
         /* CTA Section */
         .cta-section {
             padding: 5rem 2rem;
-            background: linear-gradient(135deg, #34c4ac, #2fcc1a );
+            background: url(/pag/fondo.jpg);
             text-align: center;
             color: white;
         }
@@ -528,13 +528,9 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-            width: 230px;
+             width: 230px;
             height: 90px;
+            object-fit: contain;
         }
 
         .ig {

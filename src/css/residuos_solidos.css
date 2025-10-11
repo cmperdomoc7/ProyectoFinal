@@ -6,7 +6,7 @@
             --text-secondary: #444;
             --text-light: #ffffff;
             --white: #ffffff;
-            --background: linear-gradient(135deg, rgba(8, 94, 5, 0.404), #34c4ac, #2fcc1a, #004700, #015f2b);
+            --background: url(/pag/fondo.jpg);
             --card-bg: #ffffff;
             --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
             --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
