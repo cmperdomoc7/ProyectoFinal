@@ -5,24 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.getElementById('navMenu');
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
-    const successMessage = document.getElementById('successMessage');
 
-<<<<<<< HEAD:js/Pagina1.js
-        // Form inputs
-        
-        const nameInput = document.getElementById('name');
-        const cedulaInput = document.getElementById('cedula');
-        const emailInput = document.getElementById('email');
-        const phoneInput = document.getElementById('phone');
-        const messageInput = document.getElementById('message');
-
-        // Error elements
-        const nameError = document.getElementById('nameError');
-        const cedulaError = document.getElementById('cedula');
-        const emailError = document.getElementById('emailError');
-        const phoneError = document.getElementById('phoneError');
-        const messageError = document.getElementById('messageError');
-=======
     // Form inputs - CORREGIDO: usar los IDs correctos del HTML
     const nameInput = document.getElementById('nameInput');
     const cedulaInput = document.getElementById('cedulaInput');
@@ -36,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const emailError = document.getElementById('emailError');
     const phoneError = document.getElementById('phoneError');
     const messageError = document.getElementById('messageError');
->>>>>>> 43f54715ba20d4d9a399ae1f03ce0c8a738a8b5e:src/js/Pagina1.js
 
 
     // Close menu when clicking on links
@@ -91,17 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-<<<<<<< HEAD:js/Pagina1.js
-         cedulaInput.addEventListener('blur', () => {
-            if (cedulaInput.value && !validateCedula(cedulaInput.value)) {
-                showError(cedulaInput, cedulaError, 'la cedula debe tener números');
-            } else {
-                clearError(cedulaInput, nameError);
-                if (cedulaInput.value) cedulaInput.classList.add('success');
-            }
-        });
 
-=======
     if (cedulaInput) {
         cedulaInput.addEventListener('blur', () => {
             if (cedulaInput.value && !validateCedula(cedulaInput.value)) {
@@ -113,17 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    if (emailInput) {
->>>>>>> 43f54715ba20d4d9a399ae1f03ce0c8a738a8b5e:src/js/Pagina1.js
-        emailInput.addEventListener('blur', () => {
-            if (emailInput.value && !validateEmail(emailInput.value)) {
-                showError(emailInput, emailError, 'Ingresa un email válido');
-            } else {
-                clearError(emailInput, emailError);
-                if (emailInput.value) emailInput.classList.add('success');
-            }
-        });
-    }
 
     if (phoneInput) {
         phoneInput.addEventListener('blur', () => {
@@ -154,8 +115,6 @@ document.addEventListener('DOMContentLoaded', function() {
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Clear previous messages
-            successMessage.classList.remove('show');
             
             // Get form data
             const formData = {
@@ -214,23 +173,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Simulate API call
                 await new Promise(resolve => setTimeout(resolve, 2000));
-                
-                // Success
-                successMessage.classList.add('show');
-                contactForm.reset();
-                
-                // Clear all field states
-                [nameInput, cedulaInput, emailInput, phoneInput, messageInput].forEach(input => {
-                    if (input) input.classList.remove('error', 'success');
-                });
+           
+            let mensaje = document.getElementById('mensaje');
+
+                let cedulaI = cedulaInput.value.trim();
+                let nameI = nameInput.value.trim();
+                let emailI = emailInput.value.trim();
+                let phoneI = phoneInput.value.trim();
+                let messageI = messageInput.value.trim();
+
+                // Enviar datos al servidor usando fetch
+        fetch('http://localhost:3000/cliente/submitBtn', {
+            method: 'POST', // Especifica que se está realizando una solicitud POST.
+            headers: {
+                'Content-Type': 'application/json' // Indica que el cuerpo de la solicitud es JSON
+            },
+            // Convierte el objeto de datos a una cadena JSON para enviarlo en el cuerpo de la solicitud
+            
+            body: JSON.stringify({ cedulaI, nameI, emailI, phoneI, messageI })
+        })
+        .then(response => response.text()) // Convierte la respuesta a texto
+        .then(data => {
+            // Muestra un modal indicando que el cliente fue creado exitosamente
+            mostrarModal('¡Gracias! Tu mensaje ha sido enviado correctamente. Te contactaremos pronto.');
+            // Reinicia el formulario después de crear el cliente
+            document.getElementById('contactForm').reset();
+        })
+        .catch(error => {
+            // Manejo de errores en caso de que la solicitud falle
+            console.error('Error:', error); // Imprime el error en la consola
+            mostrarModal('Error al crear el cliente'); // Muestra un mensaje de error al usuario
+        });
+
+
                 
                 // Log data (remove in production)
                 console.log('Form submitted:', formData);
                 
-                // Auto-hide success message
-                setTimeout(() => {
-                    successMessage.classList.remove('show');
-                }, 5000);
                 
             } catch (error) {
                 console.error('Error submitting form:', error);

@@ -15,13 +15,13 @@ const router = express.Router();
 
 router.post('/submitBtn', (req, res) => {
     // Destructurar los datos del cuerpo de la solicitud
-    const { cedulaInput, nameInput, email, phone, message } = req.body;
+    const { cedulaI, nameI, emailI, phoneI, messageI } = req.body;
 
     // Consulta SQL de inserción
     const query = 'INSERT INTO clientes (cedula, nombre, email, telefono, mensaje) VALUES (?, ?, ?, ?, ?)';
 
     // Ejecutar la consulta SQL con los datos proporcionados
-    req.connection.query(query, [cedulaInput, nameInput, email, phone, message], (err, result) => {
+    req.connection.query(query, [cedulaI, nameI, emailI, phoneI, messageI], (err, result) => {
         if (err) {
             // Manejar errores en la consulta SQL
             console.error('Error al crear cliente:', err);

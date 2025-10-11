@@ -6,6 +6,7 @@
     <title>Misión Circular</title>
     <script src="/js/Pagina1.js"></script>
     <link rel="stylesheet" href="/css/Pagina1.css">
+    <script src="/js/modal.js"></script>
 </head>
 <body>
     <!--MENU-->
@@ -268,9 +269,6 @@
 
                 <button type="submit" class="submit-btn" id="submitBtn">Enviar Mensaje</button>
 
-                <div class="success-message" id="successMessage">
-                    ¡Gracias! Tu mensaje ha sido enviado correctamente. Te contactaremos pronto.
-                </div>
             </form>
         </section>
 
@@ -334,6 +332,18 @@
             </div>
         </section>
     </main>
+
+    <div id="mensaje" class="confirmacion"></div> <!-- Elemento para mostrar mensajes -->
+        <a href="Pagina1.html">Volver a Inicio</a>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <p id="modalMensaje"></p>
+        </div>
+    </div>
+
 
      <!-- ICONO FLOTANTE -->
     <img class="floating-icon" onclick="redirectToExternalPage()" src="wsp.png" >
